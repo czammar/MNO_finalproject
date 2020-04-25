@@ -30,10 +30,10 @@ La finalidad del algoritmo será encontrar el portafolio de **mínima varianza**
 
 * 2)Se calcularán los rendimientos esperados de cada una de las empresas con los precios de acuerdo a la siguiente fórmula [Pendiente incluir formula]:
 
-* 3)Determinar el vector de pesos \[W\], se puede asignar aleatoriamente entre (0,1) con la condición de que la suma de la entradas sea igual a 1.
+* 3)Determinar el vector de pesos \[W\], se puede asignar aleatoriamente entre (0,1) con la condición de que la suma de la entradas sea igual a 1
 * 4)Obtener la matriz de varianzas y covarianzas de los rendimientos obtenidos
 * 5)Obtener el rendimiento esperado del portafolio \[\mu=WR\]
-* 6)Obtener la matriz de varianzas y covarianzas de las rendimeintos de las acciones \[V\]
+* 6)Obtener la matriz de varianzas y covarianzas de los rendimientos de las acciones \[V\]
 * 7)Definir la función a optimizar  \[minimizar : w^t V w\]
 * 8)Establecer las restricciones del modelo
 \[restricciones : w^t \mu=R\]<br />
