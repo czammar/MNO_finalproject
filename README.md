@@ -4,7 +4,7 @@
 
 ## Organización
 
-Para el desarrollo del proyecto, los integrantes se dividieron principalmente en dos grupos; el **grupo de programación** encargado de la implementación de los métodos y algoritmos; y el **grupo de revisión** encargado de probar y reportar los métodos del primer grupo. Ambos grupos fueron coordinados por el **Project Manager** con ayuda de un **asistente**.
+Para el desarrollo del proyecto, los integrantes se dividieron principalmente en dos grupos; el **Grupo de programación** encargado de la implementación de los métodos y algoritmos; y el **Grupo de revisión** encargado de probar y reportar los métodos del primer grupo. Ambos grupos fueron coordinados por el **Project Manager** con ayuda de un **Asistente**.
 
 La división anterior se puede resumir mediante la siguiente tabla:
 
