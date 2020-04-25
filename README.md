@@ -19,14 +19,14 @@ La división anterior se puede resumir mediante la siguiente tabla:
 
 ## Descripción del problema
 
-Se busca desallorar un algoritmo(en paralelo) para encuentre la proporción de dinero que cierto inversionista debe de invertir en un conjunto de acciones. A estas proporciones las denotaremos **wi**, que finalmente es un vector de tamaño nx1, donde n es el número de acciones a analizar. Este algoritmo se basa en el modelo de Markovitz, que de acuerdo a una frontera de posibilidades de alocación se busca la parte superior de esa frontera, ya que justamente en esa parte los rendimientos son positivos.
+Se busca desallorar un algoritmo(en paralelo) para encontrar la proporción de dinero que cierto inversionista debe invertir en un conjunto de acciones. A estas proporciones las denotaremos **wi**, que finalmente es un vector de tamaño nx1, donde $n$ es el número de acciones a analizar. Este algoritmo se basa en el modelo de Markovitz, que de acuerdo a una frontera de posibilidades de alocación se busca la parte superior de esa frontera, ya que justamente en esa parte los rendimientos son positivos.
 
 ![alt-text](https://github.com/czammar/MNO_finalproject/blob/master/images/frontera_eficiente.png)
 
-La finalidad del algoritmo será encontral el portafolio de **mínima varianza**, que es para aquellos inversionistas que son aversos al riesgo. 
+La finalidad del algoritmo será encontrar el portafolio de **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo. 
 
 ## Metodología
-* 1)Obtener base de datos de precios históricos de 50 empresas que coticen en bolsa, se obtendra un conjunto de empresas por cada industtría en el mercado. Esta infromación la obtendremos de CaquitalIQ y los precios seran diarios **Closed Price**, es decir al cierre de la bolsa.
+* 1)Obtener base de datos de precios históricos de 50 empresas que coticen en bolsa, se obtendrá un conjunto de empresas por cada industria en el mercado. Esta infromación la obtendremos de CaquitalIQ y los precios serán diarios **Closed Price**, es decir al cierre de la bolsa.
 
 * 2)Se calcularán los rendimientos esperados de cada una de las empresas con los precios de acuerdo a la siguiente fórmula [Pendiente incluir formula]:
 
