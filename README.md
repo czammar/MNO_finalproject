@@ -44,4 +44,3 @@ es el rendimiento esperado del portafolio.<br />
 Donde A se define como<br />
 \[A=\begin{pmatrix} a &b \\ b& c \end{pmatrix}\] = \[A=\begin{pmatrix} \mu^{t}\cdot V^{-1}\cdot \mu &\mu^{t}\cdot V^{-1}\cdot1 \\ \mu^{t}\cdot V^{-1}\cdot1& 1^{t}\cdot V^{-1}\cdot 1 \end{pmatrix}\]
 
-<img src="https://latex.codecogs.com/gif.latex?A=\begin{pmatrix}&space;\mu^{t}\cdot&space;V^{-1}\cdot&space;\mu&space;&\mu^{t}\cdot&space;V^{-1}\cdot1&space;\\&space;\mu^{t}\cdot&space;V^{-1}\cdot1&&space;1^{t}\cdot&space;V^{-1}\cdot&space;1&space;\end{pmatrix}" title="A=\begin{pmatrix} \mu^{t}\cdot V^{-1}\cdot \mu &\mu^{t}\cdot V^{-1}\cdot1 \\ \mu^{t}\cdot V^{-1}\cdot1& 1^{t}\cdot V^{-1}\cdot 1 \end{pmatrix}" />
