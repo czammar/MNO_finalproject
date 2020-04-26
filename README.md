@@ -46,7 +46,11 @@ La finalidad del algoritmo será encontrar el portafolio de **mínima varianza**
 * 9)Solucionar el siguiente sistema  <br />
 ![w=V^{-1}(\mu\cdot 1)A^{-1}\binom{R}{1}](https://render.githubusercontent.com/render/math?math=w%3DV%5E%7B-1%7D(%5Cmu%5Ccdot%201)A%5E%7B-1%7D%5Cbinom%7BR%7D%7B1%7D)<br />
 Donde A se define como<br />
-![$A=\begin{bmatrix} a &b \\ b& c \end{bmatrix}$](https://render.githubusercontent.com/render/math?math=%24A%3D%5Cbegin%7Bbmatrix%7D%20a%20%26b%20%5C%5C%20b%26%20c%20%5Cend%7Bbmatrix%7D%24)![$= \begin{bmatrix} \mu^{t} \cdot V^{-1} \cdot \mu & \mu^{t} \cdot V^{-1} \cdot 1 \\ \mu^{t} \cdot V^{-1} \cdot 1 & 1^{t} \cdot V^{-1}\cdot 1 \end{bmatrix}$](https://render.githubusercontent.com/render/math?math=%24%3D%20%5Cbegin%7Bbmatrix%7D%20%5Cmu%5E%7Bt%7D%20%5Ccdot%20V%5E%7B-1%7D%20%5Ccdot%20%5Cmu%20%26%20%5Cmu%5E%7Bt%7D%20%5Ccdot%20V%5E%7B-1%7D%20%5Ccdot%201%20%5C%5C%20%5Cmu%5E%7Bt%7D%20%5Ccdot%20V%5E%7B-1%7D%20%5Ccdot%201%20%26%201%5E%7Bt%7D%20%5Ccdot%20V%5E%7B-1%7D%5Ccdot%201%20%5Cend%7Bbmatrix%7D%24)
+![$A=\begin{bmatrix} a &b \\ b& c \end{bmatrix}$](https://render.githubusercontent.com/render/math?math=%24A%3D%5Cbegin%7Bbmatrix%7D%20a%20%26b%20%5C%5C%20b%26%20c%20%5Cend%7Bbmatrix%7D%24)![$= \begin{bmatrix} \mu^{t} \cdot V^{-1} \cdot \mu & \mu^{t} \cdot V^{-1} \cdot 1 \\ \mu^{t} \cdot V^{-1} \cdot 1 & 1^{t} \cdot V^{-1}\cdot 1 \end{bmatrix}$](https://render.githubusercontent.com/render/math?math=%24%3D%20%5Cbegin%7Bbmatrix%7D%20%5Cmu%5E%7Bt%7D%20%5Ccdot%20V%5E%7B-1%7D%20%5Ccdot%20%5Cmu%20%26%20%5Cmu%5E%7Bt%7D%20%5Ccdot%20V%5E%7B-1%7D%20%5Ccdot%201%20%5C%5C%20%5Cmu%5E%7Bt%7D%20%5Ccdot%20V%5E%7B-1%7D%20%5Ccdot%201%20%26%201%5E%7Bt%7D%20%5Ccdot%20V%5E%7B-1%7D%5Ccdot%201%20%5Cend%7Bbmatrix%7D%24)<br />
+
+*Otra modelo algebraico:
+
+![alt-text](https://github.com/czammar/MNO_finalproject/blob/master/images/modelo.png)
 
 
 
