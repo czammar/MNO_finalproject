@@ -28,7 +28,8 @@ La finalidad del algoritmo será encontrar el portafolio de **mínima varianza**
 ## Metodología
 * 1)Obtener base de datos de precios históricos de 50 empresas que coticen en bolsa, se obtendrá un conjunto de empresas por cada industria en el mercado. Esta infromación la obtendremos de CapitalIQ y los precios serán diarios **Closed Price**, es decir al cierre de la bolsa.
 
-* 2)Se calcularán los rendimientos esperados de cada una de las empresas con los precios de acuerdo a la siguiente fórmula [Pendiente incluir formula]:
+* 2)Se calcularán los rendimientos esperados de cada una de las empresas con los precios de acuerdo a la siguiente fórmula:
+![R=log\tfrac{Pt}{Pt-1}](https://render.githubusercontent.com/render/math?math=R%3Dlog%5Ctfrac%7BPt%7D%7BPt-1%7D)
 
 * 3)Determinar el vector de pesos ![$W$](https://render.githubusercontent.com/render/math?math=%24W%24), se puede asignar aleatoriamente entre ![$(0,1)$](https://render.githubusercontent.com/render/math?math=%24(0%2C1)%24) con la condición de que la suma de la entradas sea igual a 1
 * 4)Obtener la matriz de varianzas y covarianzas de los rendimientos obtenidos
@@ -36,12 +37,12 @@ La finalidad del algoritmo será encontrar el portafolio de **mínima varianza**
 * 6)Obtener la matriz de varianzas y covarianzas de los rendimientos de las acciones ![$V$](https://render.githubusercontent.com/render/math?math=%24V%24),
 * 7)Definir la función a optimizar  ![$minimo \; w^t V w$](https://render.githubusercontent.com/render/math?math=%24minimo%20%5C%3B%20w%5Et%20V%20w%24)
 * 8)Establecer las restricciones del modelo
-\[restricciones : w^t \mu=R\]<br />
-                \[\forall i, wi\geq 0\]<br />
-                \[W^te=1\]<br />
+![restricciones : w^t \mu=R](https://render.githubusercontent.com/render/math?math=restricciones%20%3A%20w%5Et%20%5Cmu%3DR)<br />
+![\forall i, wi\geq 0](https://render.githubusercontent.com/render/math?math=%5Cforall%20i%2C%20wi%5Cgeq%200)<br />
+![W^te=1](https://render.githubusercontent.com/render/math?math=W%5Ete%3D1)<br />
 
-  * Donde \[e\] es un vector \[e=(1,1,1....1)^t\], \[V\] es la matriz de varianzas-covarianzas y \[\mu\]es el rendimiento esperado del portafolio.<br />
-* 9) Solucionar el siguiente sistema  \[w=V^{-1}(\mu\cdot 1)A^{-1}\binom{R}{1}\]<br />
+* Donde ![e](https://render.githubusercontent.com/render/math?math=e) es un vector ![e=(1,1,1....1)^t](https://render.githubusercontent.com/render/math?math=e%3D(1%2C1%2C1....1)%5Et), ![V](https://render.githubusercontent.com/render/math?math=V) es la matriz de varianzas-covarianzas y ![\mu](https://render.githubusercontent.com/render/math?math=%5Cmu) es el rendimiento esperado del portafolio.<br />
+* 9) Solucionar el siguiente sistema  ![w=V^{-1}(\mu\cdot 1)A^{-1}\binom{R}{1}](https://render.githubusercontent.com/render/math?math=w%3DV%5E%7B-1%7D(%5Cmu%5Ccdot%201)A%5E%7B-1%7D%5Cbinom%7BR%7D%7B1%7D)
 Donde A se define como
 
 ![$A=\begin{bmatrix} a &b \\ b& c \end{bmatrix}$](https://render.githubusercontent.com/render/math?math=%24A%3D%5Cbegin%7Bbmatrix%7D%20a%20%26b%20%5C%5C%20b%26%20c%20%5Cend%7Bbmatrix%7D%24)
