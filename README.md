@@ -49,7 +49,7 @@ Donde :<br />
 ![C=\1^t\cdot \Sigma^{-1}\cdot \mu](https://render.githubusercontent.com/render/math?math=C%3D%5C1%5Et%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5Cmu)
 
 
-![alt text](https://github.com/czammar/MNO_finalproject/tree/master/image/diagrama_flojo.jpeg)
+![alt text](https://github.com/czammar/MNO_finalproject/blob/master/images/diagrama_flujo.jpeg)
 
 
 ## Referencia del algoritmo
