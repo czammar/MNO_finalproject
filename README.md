@@ -51,13 +51,10 @@ Donde :<br />
 ![B=\1^t\cdot \Sigma^{-1}\cdot \1](https://render.githubusercontent.com/render/math?math=B%3D%5C1%5Et%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5C1)<br />
 ![C=\1^t\cdot \Sigma^{-1}\cdot \mu](https://render.githubusercontent.com/render/math?math=C%3D%5C1%5Et%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5Cmu)
 
+## Diagrama de Flujo
 
 ![alt text](https://github.com/czammar/MNO_finalproject/blob/master/images/diagrama_flujo.jpeg)
 
-
-## Referencia del algoritmo
-
-![alt-text](https://github.com/czammar/MNO_finalproject/blob/master/images/modelo.png)
 
 ## Referencias 
 
