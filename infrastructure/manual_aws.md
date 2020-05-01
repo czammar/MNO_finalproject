@@ -71,6 +71,7 @@ ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]
 ```
 
 La configuración es igual a la de la [imagen](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/nvidia/cupy/1.1.0_10.1/Dockerfile), únicamente agregamos la instalación de *aws cli*.
+
  4. Se crean variables de ambiente auxiliares y se construye la imagen:
 ```
 nombre_imagen=jupyter_image
@@ -94,5 +95,5 @@ docker run --gpus all --rm -v /home/ubuntu/mi_carpeta:/datos --name $nombre_cont
 <dns ipv4 instancia>:8888
 ```
 
-Y de esta forma ingresamos *jupyterlab* donde tenemos CuPy.
+Y de esta forma ingresamos a *jupyterlab* donde tenemos CuPy.
  
