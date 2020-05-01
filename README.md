@@ -26,15 +26,18 @@ Se busca desallorar un algoritmo(en paralelo) para encontrar la proporción de d
 La finalidad del algoritmo será encontrar el portafolio de **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo.
 
 ## Metodología
-* 1)Obtener base de datos de precios históricos de 55 empresas que coticen en bolsa, se obtendrá un conjunto de empresas por cada industria en el mercado. Esta infromación la obtendremos de CapitalIQ y los precios serán diarios **Closed Price**, es decir al cierre de la bolsa. Debido a que es una plataforma privada no se puede extraer la información directamente, por lo que en nuestro proyecto no hay un proceso de EL.
+1) Obtener base de datos de precios históricos de 55 empresas que coticen en bolsa, se obtendrá un conjunto de empresas por cada industria en el mercado. Esta infromación la obtendremos de CapitalIQ y los precios serán diarios **Closed Price**, es decir al cierre de la bolsa. Debido a que es una plataforma privada no se puede extraer la información directamente, por lo que en nuestro proyecto no hay un proceso de EL.
 
-* 2)Se calcularán los rendimientos esperados de cada una de las empresas con los precios de acuerdo a la siguiente fórmula:
+2) Se calcularán los rendimientos esperados de cada una de las empresas con los precios de acuerdo a la siguiente fórmula:
 ![r=log\tfrac{P_t}{P_{t-1}}](https://render.githubusercontent.com/render/math?math=R%3Dlog%5Ctfrac%7BPt%7D%7BPt-1%7D)<br />
-* 3)Determinar el vector de pesos ![$W$](https://render.githubusercontent.com/render/math?math=%24W%24), se puede asignar aleatoriamente entre ![$(0,1)$](https://render.githubusercontent.com/render/math?math=%24(0%2C1)%24) con la condición de que la suma de la entradas sea igual a 1.<br />
-* 4)Obtener el rendimiento esperado del portafolio ![$\mu=WR$](https://render.githubusercontent.com/render/math?math=%24%5Cmu%3DWR%24)<br />
-* 5)Obtener la matriz de varianzas y covarianzas de los rendimientos de las acciones ![\Sigma](https://render.githubusercontent.com/render/math?math=%5CSigma)<br />
-* 6)Definir la función a optimizar  ![minimizar:   w^*=\mu\cdot w_{0}^{*}+w_{1}^{*}](https://render.githubusercontent.com/render/math?math=minimizar%3A%20%20%20w%5E*%3D%5Cmu%5Ccdot%20w_%7B0%7D%5E%7B*%7D%2Bw_%7B1%7D%5E%7B*%7D)<br />
-* 7)Establecer las restricciones del modelo<br />
+
+3) Determinar el vector de pesos ![$W$](https://render.githubusercontent.com/render/math?math=%24W%24), se puede asignar aleatoriamente entre ![$(0,1)$](https://render.githubusercontent.com/render/math?math=%24(0%2C1)%24) con la condición de que la suma de la entradas sea igual a 1.<br />
+4) Obtener el rendimiento esperado del portafolio ![$\mu=WR$](https://render.githubusercontent.com/render/math?math=%24%5Cmu%3DWR%24)<br />
+
+5) Obtener la matriz de varianzas y covarianzas de los rendimientos de las acciones ![\Sigma](https://render.githubusercontent.com/render/math?math=%5CSigma)<br />
+
+6) Definir la función a optimizar  ![minimizar:   w^*=\mu\cdot w_{0}^{*}+w_{1}^{*}](https://render.githubusercontent.com/render/math?math=minimizar%3A%20%20%20w%5E*%3D%5Cmu%5Ccdot%20w_%7B0%7D%5E%7B*%7D%2Bw_%7B1%7D%5E%7B*%7D)<br />
+7) Establecer las restricciones del modelo<br />
 ![restricciones : w^t \mu=r](https://render.githubusercontent.com/render/math?math=restricciones%20%3A%20w%5Et%20%5Cmu%3DR)<br />
 ![\forall i, wi\geq 0](https://render.githubusercontent.com/render/math?math=%5Cforall%20i%2C%20wi%5Cgeq%200)<br />
 ![W^te=1](https://render.githubusercontent.com/render/math?math=W%5Ete%3D1)<br />
