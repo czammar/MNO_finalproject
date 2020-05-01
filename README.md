@@ -8,14 +8,14 @@ Para el desarrollo del proyecto, los integrantes se dividieron principalmente en
 
 La división anterior se puede resumir mediante la siguiente tabla:
 
-| #    | Rol                                   | Persona      | 
-| ---- | --------------------------------------| ------------ | 
-| 1    | Grupo de programación                 | Bruno        | 
-| 2    | Grupo de programación                 | Itzel        | 
-| 3    | Grupo de programación                 | César        | 
+| #    | Rol                                   | Persona      |
+| ---- | --------------------------------------| ------------ |
+| 1    | Grupo de programación                 | Bruno        |
+| 2    | Grupo de programación                 | Itzel        |
+| 3    | Grupo de programación                 | César        |
 | 4    | Grupo de revisión                     | León         |
-| 5    | Grupo de revisión/Asistente de PM     | Danahi       | 
-| 6    | Project Manager                       | Yalidt       | 
+| 5    | Grupo de revisión/Asistente de PM     | Danahi       |
+| 6    | Project Manager                       | Yalidt       |
 
 ## Descripción del problema
 
@@ -53,7 +53,17 @@ Donde :<br />
 
 ## Diagrama de Flujo
 
+En este sentido, para llevar a cambo la implementación descrito en la sección precedente, se propuso descomponer en una serie de etapas que facilitan la implementación colaborativa y el emsable del código.
 
+* **Etapa I:** se refiere a la obtención de los datos de portafolios a analizar, junto con su limpieza y transformación para posteriores análisis,
+* **Etapa II:** corresponde a la estimación de tres elementos base del modelo, a saber el retorno esperado de los activos, el valor medio esperado de los mismo junto con la matriz de covarianzas asociada.
+* **Etapa III:** relativa a la aproximación de la composición de los pesos que permite integrar el portafolio de inversión que posee **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo.
+
+El proceso en comento, se resumen a continuación:
+
+
+
+![Diagrama de flujo](./images/diagrama_flujo.jpeg)
 
 
 ## Referencias 
