@@ -53,7 +53,7 @@ Donde :<br />
 
 ## Diagrama de Flujo
 
-![alt text](https://github.com/czammar/MNO_finalproject/blob/master/images/diagrama_flujo.jpeg)
+
 
 
 ## Referencias 
