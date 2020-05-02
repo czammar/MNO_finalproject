@@ -26,13 +26,13 @@ Se busca desallorar un algoritmo(en paralelo) para encontrar la proporción de d
 La finalidad del algoritmo será encontrar el portafolio de **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo.
 
 ## Metodología
-1) Obtener base de datos de precios históricos de 55 empresas que coticen en bolsa, se obtendrá un conjunto de empresas por cada industria en el mercado. Esta infromación la obtendremos de CapitalIQ y los precios serán diarios **Closed Price**, es decir al cierre de la bolsa. Debido a que es una plataforma privada no se puede extraer la información directamente, por lo que en nuestro proyecto no hay un proceso de EL.
+1) Obtener base de datos de precios históricos de 50 empresas que coticen en bolsa, se obtendrá un conjunto de empresas por cada industria en el mercado y se seleccionaran las que tengan mayor participación en el mercado. Esta información la obtendremos de Yahoo Finance y los precios serán diarios **Closed Price**(al cierre de la bolsa)de los últimos 5 años para hacer el análisis. Se realizará un proceso de extracción de la base de datos definida en la etapa 1 del diagrama de flujo.
 
 2) Se calcularán los rendimientos esperados de cada una de las empresas con los precios de acuerdo a la siguiente fórmula:
 ![r=log\tfrac{P_t}{P_{t-1}}](https://render.githubusercontent.com/render/math?math=R%3Dlog%5Ctfrac%7BPt%7D%7BPt-1%7D)<br />
 
 3) Determinar el vector de pesos ![$W$](https://render.githubusercontent.com/render/math?math=%24W%24), se puede asignar aleatoriamente entre ![$(0,1)$](https://render.githubusercontent.com/render/math?math=%24(0%2C1)%24) con la condición de que la suma de la entradas sea igual a 1.<br />
-4) Obtener el rendimiento esperado del portafolio ![$\mu=WR$](https://render.githubusercontent.com/render/math?math=%24%5Cmu%3DWR%24)<br />
+4) Obtener el rendimiento esperado del portafolio ![r=w^t \mu](https://render.githubusercontent.com/render/math?math=r%3Dw%5Et%20%5Cmu)
 
 5) Obtener la matriz de varianzas y covarianzas de los rendimientos de las acciones ![\Sigma](https://render.githubusercontent.com/render/math?math=%5CSigma)<br />
 
@@ -59,7 +59,7 @@ En este sentido, para llevar a cambo la implementación descrito en la sección 
 * **Etapa II:** corresponde a la estimación de tres elementos base del modelo, a saber el retorno esperado de los activos, el valor medio esperado de los mismo junto con la matriz de covarianzas asociada.
 * **Etapa III:** relativa a la aproximación de la composición de los pesos que permite integrar el portafolio de inversión que posee **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo.
 
-El proceso en comento, se resumen a continuación:
+El proceso comentado, se resumen a continuación:
 
 
 
