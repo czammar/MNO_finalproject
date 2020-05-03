@@ -36,15 +36,15 @@ La finalidad del algoritmo será encontrar el portafolio de **mínima varianza**
 
 5) Obtener la matriz de varianzas y covarianzas de los rendimientos de las acciones ![\Sigma](https://render.githubusercontent.com/render/math?math=%5CSigma)<br />
 
-6) Definir la función a optimizar  ![minimizar:   w^*=\mu\cdot w_{0}^{*}+w_{1}^{*}](https://render.githubusercontent.com/render/math?math=minimizar%3A%20%20%20w%5E*%3D%5Cmu%5Ccdot%20w_%7B0%7D%5E%7B*%7D%2Bw_%7B1%7D%5E%7B*%7D)<br />
+6) Definir la función a optimizar  ![w^{*}=w_{0}\cdot (\Sigma^{-1}\cdot \mu)+w_{1}\cdot (\Sigma^{-1}\cdot 1)](https://render.githubusercontent.com/render/math?math=w%5E%7B*%7D%3Dw_%7B0%7D%5Ccdot%20(%5CSigma%5E%7B-1%7D%5Ccdot%20%5Cmu)%2Bw_%7B1%7D%5Ccdot%20(%5CSigma%5E%7B-1%7D%5Ccdot%201))<br />
 7) Establecer las restricciones del modelo<br />
 ![restricciones : w^t \mu=r](https://render.githubusercontent.com/render/math?math=restricciones%20%3A%20w%5Et%20%5Cmu%3DR)<br />
 ![\forall i, wi\geq 0](https://render.githubusercontent.com/render/math?math=%5Cforall%20i%2C%20wi%5Cgeq%200)<br />
 ![W^te=1](https://render.githubusercontent.com/render/math?math=W%5Ete%3D1)<br />
 
 * Donde los vectores auxiliares son los siguientes:<br />
-![w_{0}^{*}=\frac{1}{\Delta}\cdot (B\cdot \Sigma^{-1}\cdot \mu-C\cdot \Sigma^{-1}\cdot 1)](https://render.githubusercontent.com/render/math?math=w_%7B0%7D%5E%7B*%7D%3D%5Cfrac%7B1%7D%7B%5CDelta%7D%5Ccdot%20(B%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5Cmu-C%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%201))<br />
-![w_{1}^{*}=\frac{1}{\Delta}\cdot (C\cdot \Sigma^{-1}\cdot \mu-A\cdot \Sigma^{-1}\cdot 1)](https://render.githubusercontent.com/render/math?math=w_%7B1%7D%5E%7B*%7D%3D%5Cfrac%7B1%7D%7B%5CDelta%7D%5Ccdot%20(C%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5Cmu-A%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%201))<br />
+![w_{0}=\frac{1}{\Delta }(\hat{r}\cdot B-C)](https://render.githubusercontent.com/render/math?math=w_%7B0%7D%3D%5Cfrac%7B1%7D%7B%5CDelta%20%7D(%5Chat%7Br%7D%5Ccdot%20B-C))<br />
+![w_{1}=\frac{1}{\Delta }(A-C\cdot \hat{r})](https://render.githubusercontent.com/render/math?math=w_%7B1%7D%3D%5Cfrac%7B1%7D%7B%5CDelta%20%7D(A-C%5Ccdot%20%5Chat%7Br%7D))<br />
 Donde :<br />
 ![\Delta =A\cdot B-C^2](https://render.githubusercontent.com/render/math?math=%5CDelta%20%3DA%5Ccdot%20B-C%5E2)<br />
 ![A=\mu^t\cdot \Sigma^{-1}\cdot \mu](https://render.githubusercontent.com/render/math?math=A%3D%5Cmu%5Et%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5Cmu)<br />
