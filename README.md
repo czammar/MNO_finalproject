@@ -63,7 +63,7 @@ El proceso comentado, se resumen a continuación:
 
 
 
-![Diagrama de flujo](./images/diagrama_flujo.jpeg)
+![Diagrama de flujo](./images/diagrama_flujo.png)
 
 
 ## Referencias 
