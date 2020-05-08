@@ -64,6 +64,50 @@ El proceso comentado, se resumen a continuación:
 
 ![Diagrama de flujo](./images/diagrama_flujo.png)
 
+## Desarrollo
+
+Evaluar distintos portafolios, es decir distintos pesos **w**, usando la media y varianza del protafolio: <img src="https://render.githubusercontent.com/render/math?math=(\mu, \Sigma)"> para 
+- Retornos esperados  <img src="https://render.githubusercontent.com/render/math?math=\mu"> más grandes 
+- Varianza  <img src="https://render.githubusercontent.com/render/math?math=\Sigma"> más pequeña
+
+**Problema:** Minimización del riesgo: Dado un objetivo de retorno **r**, elegir los pesos del portafolio **w** que:
+
+Minimice <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{2}w^T\Sigma w">
+
+Sujeto a: 
+- <img src="https://render.githubusercontent.com/render/math?math=w^T\mu=r">
+- <img src="https://render.githubusercontent.com/render/math?math=w^T1_{n}=1">
+
+**Solución:** Aplicar el método de multiplicadores de Lagrange al problema de optimización convexa (minimización) sujeto a restricciones lineales
+
+- Definir Lagrangiano
+
+<img src="https://render.githubusercontent.com/render/math?math=L(w,\lambda_{1}, \lambda_{2}) = \frac{1}{2}w^T\Sigma w + \lambda_{1}(r-w^T\mu) +\lambda_{2}(1-w^T1_{n})">
+
+- Derivar las condiciones de primer orden
+
+<img src="https://render.githubusercontent.com/render/math?math=\frac{\delta L}{\delta w} = 0_{n} = \Sigma w - \lambda_{1}\mu - \lambda_{2}1_{n}">
+
+<img src="https://render.githubusercontent.com/render/math?math=\frac{\delta L}{\delta \lambda_{1}} = 0 = r -w^T\mu">
+
+<img src="https://render.githubusercontent.com/render/math?math=\frac{\delta L}{\delta \lambda{2}} = 0 = 1 -w^T1_{n}">
+
+- Resolver para **w** en terminos de <img src="https://render.githubusercontent.com/render/math?math=\lambda_{1}, \lambda_{2}">
+
+<img src="https://render.githubusercontent.com/render/math?math=w_{0} = \lambda_{1}\Sigma^{-1}1_{n}">
+
+- Resolver para <img src="https://render.githubusercontent.com/render/math?math=\lambda_{1}, \lambda_{2}"> sustituyendo para **w**
+<img src="https://render.githubusercontent.com/render/math?math=r = w^T_{0}\mu = \lambda_{1}(\mu^T\Sigma^{-1}\mu) \oplus \lambda_{2}(\mu^T\Sigma^{-1}1_{n}))">
+
+<img src="https://render.githubusercontent.com/render/math?math=1 = w^T 1_{n} = \lambda_{1}(\mu^T\Sigma^{-1}1_{n}) \oplus \lambda_{2}(1^T_{n}\Sigma^{-1}1_{n})">
+
+<img src="https://render.githubusercontent.com/render/math?math=\Rightarrow">
+
+
+![Matriz](./images/matriz.png)
+
+<img src="https://render.githubusercontent.com/render/math?math=a =(\mu\Sigma^{-1}), b =(\mu\Sigma_{-1}1_{n}) , c = (1^T_{n}\Sigma^{-1}1_{n})">
+
 
 ## Referencias 
 
