@@ -39,7 +39,6 @@ La finalidad del algoritmo será encontrar el portafolio de **mínima varianza**
 6) Definir la función a optimizar  ![w^{*}=w_{0}\cdot (\Sigma^{-1}\cdot \mu)+w_{1}\cdot (\Sigma^{-1}\cdot 1)](https://render.githubusercontent.com/render/math?math=w%5E%7B*%7D%3Dw_%7B0%7D%5Ccdot%20(%5CSigma%5E%7B-1%7D%5Ccdot%20%5Cmu)%2Bw_%7B1%7D%5Ccdot%20(%5CSigma%5E%7B-1%7D%5Ccdot%201))<br />
 7) Establecer las restricciones del modelo<br />
 ![restricciones : w^t \mu=r](https://render.githubusercontent.com/render/math?math=restricciones%20%3A%20w%5Et%20%5Cmu%3DR)<br />
-![\forall i, wi\geq 0](https://render.githubusercontent.com/render/math?math=%5Cforall%20i%2C%20wi%5Cgeq%200)<br />
 ![W^te=1](https://render.githubusercontent.com/render/math?math=W%5Ete%3D1)<br />
 
 * Donde los vectores auxiliares son los siguientes:<br />
