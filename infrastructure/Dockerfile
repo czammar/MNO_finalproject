@@ -17,13 +17,9 @@ RUN apt-get update && apt-get install -y \
             python3-pip \
             python3-setuptools \
             nodejs && pip3 install --upgrade pip && \
-            pip3 install --upgrade setuptools && pip3 install awscli --upgrade
+            pip3 install --upgrade setuptools 
 
-# Instalamos librerias necesarias para el solver
-# Nota fix-yahoo-finance cambio de nombre, se inserta yfinance
-RUN apt-get install -y awscli # instala awscli
-RUN pip3 install awscli
-RUN pip3 install pandas yfinance matplotlib seaborn
+RUN pip3 install pandas yfinance matplotlib seaborn numpy datetime
 
 RUN groupadd miuser
 RUN useradd miuser -g miuser -m -s /bin/bash
@@ -33,9 +29,8 @@ RUN pip3.6 install jupyter jupyterlab==$JUPYTERLAB_VERSION --upgrade
 USER miuser
 
 
-RUN pip3 install --user cupy-cuda101
+RUN pip3 install --user cupy-cuda101 awscli
 
 RUN jupyter notebook --generate-config && sed -i "s/#c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /home/miuser/.jupyter/jupyter_notebook_config.py
 
 ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]
-
