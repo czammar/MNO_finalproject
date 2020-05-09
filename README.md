@@ -104,7 +104,7 @@ Sujeto a:
 <img src="https://render.githubusercontent.com/render/math?math=\Rightarrow">
 
 
-![Matriz](./images/matriz.png =250x)
+![Matriz](./images/matriz.png | width=100)
 
 
 <img src="https://render.githubusercontent.com/render/math?math=a =(\mu\Sigma^{-1}), b =(\mu\Sigma_{-1}1_{n}) , c = (1^T_{n}\Sigma^{-1}1_{n})">
