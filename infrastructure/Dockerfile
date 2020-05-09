@@ -1,3 +1,6 @@
+# Basado en https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/nvidia/cupy/1.1.0_10.1/Dockerfile
+# Se agregan layers adicionales que permite correr el solver de Markowitz
+
 FROM nvidia/cuda:10.1-devel-ubuntu18.04
 
 ENV JUPYTERLAB_VERSION 1.1.0
