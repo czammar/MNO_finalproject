@@ -5,7 +5,7 @@
  
  Para poder seguir estos pasos, es necesario tener habilitados los permisos para levantar instancias con GPU's en AWS.
  
- 1. Levantamos una instancia en AWS en una máquina que tenga la opción p2.xlarge como tipo de instancia, en este caso elegimos la máquina **Deep Learning AMI (Ubuntu 18.04) Version 28.0** pues tiene una tarjeta gráfica NVIDIA. Elegimos **p2.xlarge** como VPU y continuamos con la configuración de la instancia, eligiendo una Network, IAM Role y Security Group adecuados.
+ 1. Levantamos una instancia en AWS en una máquina que tenga la opción p2.xlarge como tipo de instancia, en este caso elegimos la máquina **Deep Learning AMI (Ubuntu 18.04) Version 28.0** pues tiene una tarjeta gráfica NVIDIA. Elegimos **p2.xlarge** como tipo de instancia con 4 vCPUs y continuamos con la configuración de la instancia, eligiendo una Network, IAM Role y Security Group adecuados.
 
 
  2. En la sección *Advanced Details* agregamos la siguiente configuración:
@@ -30,7 +30,8 @@ mkdir /home/ubuntu/jupyter
 cd /home/ubuntu/jupyter
 nano Dockerfile
 ```
-En el Dockerfile agregamos la configuración:
+En el [Dockerfile](https://github.com/czammar/MNO_finalproject/blob/master/infrastructure/Dockerfile) agregamos la configuración:
+
 ```
 FROM nvidia/cuda:10.1-devel-ubuntu18.04
 
@@ -53,7 +54,7 @@ RUN apt-get update && apt-get install -y \
             nodejs && pip3 install --upgrade pip && \
             pip3 install --upgrade setuptools 
 
-RUN pip3 install awscli --upgrade --user
+RUN pip3 install pandas yfinance matplotlib seaborn numpy datetime
 
 RUN groupadd miuser
 RUN useradd miuser -g miuser -m -s /bin/bash
@@ -70,7 +71,7 @@ RUN jupyter notebook --generate-config && sed -i "s/#c.NotebookApp.password = .*
 ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]
 ```
 
-La configuración es igual a la de la [imagen](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/nvidia/cupy/1.1.0_10.1/Dockerfile), únicamente agregamos la instalación de *aws cli*.
+Esta configuración es la necesaria para poder ejecutar nuestro [desarrollo](https://github.com/czammar/MNO_finalproject/blob/master/infrastructure/Solver_AWS.ipynb) del modelo Markowitz.
 
  4. Se crean variables de ambiente auxiliares y se construye la imagen:
 ```
