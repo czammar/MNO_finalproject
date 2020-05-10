@@ -118,7 +118,7 @@ Sujeto a:
 
 ## Organización
 
-Para el desarrollo de esta fase del proyecto, los integrantes se dividieron principalmente en dos grupos; el **Grupo de programación** encargado de la implementación de los métodos y algoritmos; y el **Grupo de revisión** encargado de probar y reportar los métodos del primer grupo así como apoyo para otras actividades referentes al proyecto. Ambos grupos fueron coordinados por el **Project Manager**.
+Para el desarrollo de esta fase del proyecto, los integrantes se dividieron principalmente en dos grupos; el **Grupo de programación** encargado de la implementación de los métodos y algoritmos; y el **Grupo de revisión** encargado de probar y reportar los métodos del primer grupo así como **apoyo** para otras actividades referentes al proyecto. Ambos grupos fueron coordinados por el **Project Manager**.
 
 La división anterior se puede resumir mediante la siguiente tabla:
 
@@ -128,7 +128,7 @@ La división anterior se puede resumir mediante la siguiente tabla:
 | 2    | Grupo de programación                      | Itzel        |
 | 3    | Grupo de programación                      | César        |
 | 4    | Grupo de revisión/ Ayudante de programación| León         |
-| 5    | Grupo de revisión/ Contexto Teoríco        | Yalidt       |
+| 5    | Grupo de revisión/ Contexto Teórico        | Yalidt       |
 | 6    | Project Manager                            | Danahi       |
 
 ## Descripción del problema
