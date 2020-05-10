@@ -1,10 +1,10 @@
 # Implementación del modelo Markowitz a cómputo en paralelo
 
-
+### Fase 1
 
 ## Organización
 
-Para el desarrollo del proyecto, los integrantes se dividieron principalmente en dos grupos; el **Grupo de programación** encargado de la implementación de los métodos y algoritmos; y el **Grupo de revisión** encargado de probar y reportar los métodos del primer grupo. Ambos grupos fueron coordinados por el **Project Manager** con ayuda de un **Asistente**.
+Para el desarrollo de esta fase del proyecto, los integrantes se dividieron principalmente en dos grupos; el **Grupo de programación** encargado de la implementación de los métodos y algoritmos; y el **Grupo de revisión** encargado de probar y reportar los métodos del primer grupo. Ambos grupos fueron coordinados por el **Project Manager** con ayuda de un **Asistente**.
 
 La división anterior se puede resumir mediante la siguiente tabla:
 
@@ -113,6 +113,26 @@ Sujeto a:
 
 <img src="https://render.githubusercontent.com/render/math?math=a =(\mu\Sigma^{-1}), b =(\mu\Sigma_{-1}1_{n}) , c = (1^T_{n}\Sigma^{-1}1_{n})">
 
+
+### Fase 2
+
+## Organización
+
+Para el desarrollo de esta fase del proyecto, los integrantes se dividieron principalmente en dos grupos; el **Grupo de programación** encargado de la implementación de los métodos y algoritmos; y el **Grupo de revisión** encargado de probar y reportar los métodos del primer grupo así como apoyo para otras actividades referentes al proyecto. Ambos grupos fueron coordinados por el **Project Manager**.
+
+La división anterior se puede resumir mediante la siguiente tabla:
+
+| #    | Rol                                        | Persona      |
+| ---- | -------------------------------------------| ------------ |
+| 1    | Grupo de programación                      | Bruno        |
+| 2    | Grupo de programación                      | Itzel        |
+| 3    | Grupo de programación                      | César        |
+| 4    | Grupo de revisión/ Ayudante de programación| León         |
+| 5    | Grupo de revisión/ Contexto Teoríco        | Yalidt       |
+| 6    | Project Manager                            | Danahi       |
+
+## Descripción del problema
+En esta fase el objetivo es adaptar el código anteriormente desarrollado, el cual consiste en encontrar los pesos que minimicén la varianza del protafolio dado cierto retorno esperado por el inversionista a **restricciones**.
 
 ## Referencias 
 
