@@ -132,7 +132,8 @@ La división anterior se puede resumir mediante la siguiente tabla:
 | 6    | Project Manager                            | Danahi       |
 
 ## Descripción del problema
-En esta fase el objetivo es adaptar el código anteriormente desarrollado, el cual consiste en encontrar los pesos que minimicén la varianza del protafolio dado cierto retorno esperado por el inversionista a **restricciones**.
+
+En esta fase el objetivo es desarrollar el código para resolver ahora el problema del modelo de Markowitz no con la solución cerrada, sino con un algoritmo de optimización sujeto a **restricciones de igualdad**.
 
 ## Referencias 
 
