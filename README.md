@@ -86,7 +86,7 @@ Sujeto a:
 
 - Definir Lagrangiano
 
-<img src="https://render.githubusercontent.com/render/math?math=L(w,\lambda_{1}, \lambda_{2}) = \frac{1}{2}w^T\Sigma w + \lambda_{1}(r-w^T\mu) +\lambda_{2}(1-w^T1_{n})">
+<img src="https://render.githubusercontent.com/render/math?math=L(w,\lambda_{1}, \lambda_{2}) = \frac{1}{2}w^T\Sigma w \oplus  \lambda_{1}(r-w^T\mu) \oplus \lambda_{2}(1-w^T1_{n})">
 
 - Derivar las condiciones de primer orden
 
