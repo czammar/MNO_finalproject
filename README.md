@@ -133,7 +133,7 @@ La división anterior se puede resumir mediante la siguiente tabla:
 
 ## Descripción del problema
 
-En esta fase el objetivo es desarrollar el código para resolver ahora el problema del modelo de Markowitz no con la solución cerrada, sino con un algoritmo de optimización sujeto a **restricciones de igualdad**.
+En esta fase el objetivo es desarrollar el código para resolver ahora el problema del modelo de Markowitz no con la solución cerrada, sino con un **algoritmo de optimización sujeto a restricciones de igualdad**.
 
 ## Referencias 
 
