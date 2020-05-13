@@ -5,7 +5,7 @@
  
  Para poder seguir estos pasos, es necesario tener habilitados los permisos para levantar instancias con GPU's en AWS.
  
- 1. Levantamos una instancia en AWS en una máquina que tenga la opción p2.xlarge como tipo de instancia, en este caso elegimos la máquina **Deep Learning AMI (Ubuntu 18.04) Version 28.0** pues tiene una tarjeta gráfica NVIDIA. Elegimos **p2.xlarge** como tipo de instancia con 4 vCPUs y continuamos con la configuración de la instancia, eligiendo una Network, IAM Role y Security Group adecuados.
+ 1. Levantamos una instancia en AWS en una máquina que tenga la opción p2.xlarge como tipo de instancia, en este caso elegimos la máquina **Deep Learning AMI (Ubuntu 18.04) Version 28.1** pues tiene una tarjeta gráfica NVIDIA. Elegimos **p2.xlarge** como tipo de instancia con 4 vCPUs y continuamos con la configuración de la instancia, eligiendo una Network, IAM Role y Security Group adecuados.
 
 
  2. En la sección *Advanced Details* agregamos la siguiente configuración:
