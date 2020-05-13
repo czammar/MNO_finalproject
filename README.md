@@ -50,7 +50,7 @@ Donde :<br />
 ![B=\1^t\cdot \Sigma^{-1}\cdot \1](https://render.githubusercontent.com/render/math?math=B%3D%5C1%5Et%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5C1)<br />
 ![C=\1^t\cdot \Sigma^{-1}\cdot \mu](https://render.githubusercontent.com/render/math?math=C%3D%5C1%5Et%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5Cmu)
 
-## Resultados de la optimización Marcowitz
+## Resultados de la optimización Markowitz
 
 Una vez aplicado el algoritmo que resuelve el sistema de minimización para obtener el portafolio de *mínima varianza*, que en otras palabras significa obtener el portafolio de menor riesgo para inversionistas aversos al riesgo, se espera obtener las ponderaciones o proporciones que el inversionista debe invertir en las acciones evaluadas en un vector de todo el conjunto de acciones. Estos pesos pueden ser negativos porque asumimos que pueden existir Ventas en corto(*short sale*), lo cual implica que los inversores podrían tener una ganancia si tienen algún contrato de préstamo de titulos accionarios, los cuales deben devolver a una fecha futura y podrían devolverlos a un precio menor.
 
