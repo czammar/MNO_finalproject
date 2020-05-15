@@ -1,93 +1,5 @@
 import cupy as cp
-import numpy as np
 import pandas as pd
-import fix_yahoo_finance as yf
-import datetime
-import matplotlib.pyplot as plt
-import seaborn as sns
-import time
-
-def extraer_datos_yahoo(stocks):
-  '''
-  Funcion para extraer datos de los portafolios de yahoo finance de 2015-01-01 a 2020-04-30
-  '''
-  df_c = yf.download(stocks, start='2015-01-01', end='2020-04-30').Close
-  base = df_c['AAPL'].dropna().to_frame()
-  for i in range(0,50):
-      base = base.join(df_c.iloc[:,i].to_frame(), lsuffix='_caller', rsuffix='_other')
-  base = base.drop(columns=['AAPL_caller'])
-  base = base.rename(columns={"AAPL_other": "AAPL"})
-  base = base.fillna(method='ffill')
-  base = base.fillna(method='bfill')
-  return base
-
-
-def calcular_rendimiento_vector(x):
-  """
-  Función para calcular el rendimiento esperado
-
-  params:
-      x     vector de precios
-  
-  return:
-      r_est rendimiento esperado diario
-  """
-
-  # Definimos precios iniciales y finales como arreglo alojado en la gpu
-  x_o = cp.asarray(x)
-  x_f = x_o[1:]
-
-  # Calculamos los rendimientos diarios
-  r = cp.log(x_f/x_o[:-1])
-
-  return r
-
-def calcular_rendimiento(X):
-  """
-  Función para calcular el rendimiento esperado para un conjunto de acciones
-
-  params:
-      X      matriz mxn de precios, donde:
-             m es el número de observaciones y
-             n el número de acciones
-  
-  return:
-      r_est rvector de rendimientos esperados
-  """
-  m,n = X.shape
-  r_est = cp.zeros(n)
-  X = cp.asarray(X)
-
-  for i in range(n):
-    r_est[i] = calcular_rendimiento_vector(X[:,i]).mean()
-
-  return 264*r_est
-
-def calcular_varianza(X):
-
-  """
-  Función para calcular el la matriz de varianzas y covarianzas para un conjunto de acciones
-
-  params:
-      X      matriz mxn de precios, donde:
-             m es el número de observaciones y
-               n el número de acciones
-  
-  return:
-      S  matriz de varianzas y covarianzas
-  """
-  m,n=X.shape
-  X = cp.asarray(X)
-
-  X_m = cp.zeros((m-1,n))
-
-  for i in range(n):
-    X_m[:,i] = calcular_rendimiento_vector(X[:,i]) - calcular_rendimiento_vector(X[:,i]).mean()
-
-  S = (cp.transpose(X_m)@X_m)/(m-2)
-
-  return S
-
 
 def formar_vectores(mu, Sigma):
   '''
@@ -117,7 +29,6 @@ def formar_vectores(mu, Sigma):
   v = cp.linalg.solve(Sigma, ones_vector)
 
   return u , v
-
 
 def formar_abc(mu, Sigma):
   '''
@@ -151,6 +62,7 @@ def formar_abc(mu, Sigma):
 
   return A, B, C
 
+
 def delta(A,B,C):
   '''
   Calcula las cantidad Delta = AB-C^2 del diagrama de flujo del problema de Markowitz
@@ -166,6 +78,7 @@ def delta(A,B,C):
   Delta = A*B-C**2
 
   return Delta
+
 
 def formar_omegas(r, mu, Sigma):
   '''
@@ -193,7 +106,7 @@ def formar_omegas(r, mu, Sigma):
   return w_0, w_1
 
 
-def markowitz(r, mu, Sigma):
+def markowitz(r, mu, Sigma, stocks = ""):
   '''
   Calcula las cantidades w_o y w_ del problema de Markowitz
 
@@ -207,11 +120,19 @@ def markowitz(r, mu, Sigma):
     w_1 (cupy array, vector): vector dado por 
          w_1 = \frac{1}{\Delta} (C \Sigma^{-1} \hat{\mu}- A\Sigma^{-1} 1)
   '''
+
+  if stocks == "":
+    stocks = [i for i in range(len(mu))]
+
   # Obtenemos u = Sigma^{-1} \hat{\mu}, v = \Sigma^{-1} 1
   u, v = formar_vectores(mu, Sigma)
 
   # Formamos w_0 y w_1
   w_0, w_1 = formar_omegas(r, mu, Sigma)
+  aux = w_0*u+w_1*v
+  w =pd.DataFrame(aux, stocks, columns = ['peso'])
+  w.index.name = 'acción'
+  w = w.sort_values(by=['peso'], ascending=False)
+  return w
 
-  return w_0*u+w_1*v
 
