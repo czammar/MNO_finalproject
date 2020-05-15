@@ -135,6 +135,37 @@ La división anterior se puede resumir mediante la siguiente tabla:
 
 En esta fase el objetivo es desarrollar el código para resolver ahora el problema del modelo de Markowitz no con la solución cerrada, sino con un **algoritmo de optimización sujeto a restricciones de igualdad**.
 
+## Problema 
+min <img src="https://render.githubusercontent.com/render/math?math=f(w) = \frac{1}{2}w^T\Sigma w">
+
+Sujeto a: 
+- <img src="https://render.githubusercontent.com/render/math?math=w^T\mu=r">
+- <img src="https://render.githubusercontent.com/render/math?math=w^T1_{n}=1">
+
+## Método de Newton con reestricciones de igualdad
+
+Consideraciones:
+
+1) El punto inicial debe ser factible, es decir: <img src="https://render.githubusercontent.com/render/math?math=w\in domf"> , <img src="https://render.githubusercontent.com/render/math?math=w^T\mu = r"> y <img src="https://render.githubusercontent.com/render/math?math=w^T1_{n} = 1">
+
+2) El paso de Newton <img src="https://render.githubusercontent.com/render/math?math=\Delta w">, debe modificarse de modo que satisfaga las reestricciones.
+
+
+### Aproximación de segundo orden
+Supongase que w es un punto factible del problema y desarrollese vía el teorema de Taylor la aproximación de segundo orden con centro en el punto w para f
+
+<img src="https://render.githubusercontent.com/render/math?math=f: \hat{f}(w \oplus + v) = f(w) \oplus \Delta f(w)^Tv \oplus \frac{1}{2}v^T\Delta^2f(w)v">
+
+Entonces el problema que se resolvera es:
+min <img src="https://render.githubusercontent.com/render/math?math=\hat{f}(w\oplus v)">
+
+Sujeto a: 
+- <img src="https://render.githubusercontent.com/render/math?math=(w\oplus v)^T\mu=r">
+- <img src="https://render.githubusercontent.com/render/math?math=(w\oplus v)^T1_{n}=1">
+
+con variable  <img src="https://render.githubusercontent.com/render/math?math=v \in R^n">, el cual como f es convexa es un problema convexo de minimización cuadrática con reestricciones de igualdad.
+
+
 ## Referencias 
 
 Bodie, Z., Kane, A., & Marcus, A. J. (2011). Investments. New York: McGraw-Hill/Irwin.<br />
