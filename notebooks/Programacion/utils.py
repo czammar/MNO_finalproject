@@ -43,3 +43,9 @@ def norm_residual(feas_primal, feas_dual):
     return cp.sqrt(cp.linalg.norm(feas_primal)**2 +\
                    cp.linalg.norm(feas_dual)**2
                    )
+
+def condicion_cupy(A):
+    A_inv = cp.linalg.inv(A)
+    NAi = cp.linalg.norm(A_inv)
+    NA = cp.linalg.norm(A)
+    return NAi*NA
