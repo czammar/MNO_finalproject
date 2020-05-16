@@ -15,7 +15,7 @@
   + Revisión
 
 
-[WIP: Añadir índice al repositorios y referencias cruzadas]
+[WIP: Añadir índice al repositorios y referencias cruzadas de github]
 
 
 ## 2. Descripción del problema
@@ -47,9 +47,62 @@ A continuación se describen la estructura del presente repositorio, así como l
 
 ### 3.1 Portafolio de activos, sus rendimientos y pesos.
 
-* Tras analizar las fuentes de datos disponibles, se estableció considerar precios históricos de las 50 empresas, que destacan en sus correspondientes industria,  seleccionándose las que tienen mayor participación en el mercado (al momento de realizar este proyecto). En concreto, se consideraron  las empresas:
+* Tras analizar las fuentes de datos disponibles, se estimó pertinente considerar precios históricos de las 50 empresas, que destacan en sus correspondientes industria,  seleccionándose las que tienen mayor participación en el mercado (al momento de realizar este proyecto). En concreto, se consideraron  las empresas:
 
-[WIP: Añadir tabla de nombre de empresas junto con sus acrónimos]
+|Código Bursátil| Nombre de la empresa                           | Industria               |
+| --------- | ------------------------------------------------| ----------------------- |
+| XOM       | Exxon Mobil Corporation                         | Energía                 |
+| CVX       | Chevron Corporation                             | Energía                 |
+|RDSA.AS    | Royal Dutch Shell                               | Energía                 |
+|RELIANCE.NS| Reliance Industries Limited                      | Energía                 |
+| COP       | Conoco Phillips                                  | Energía                 |
+| AMT       | American Tower Corporation                      | Inmobiliaria            |
+| CCI       | Crown Castle International Corp                 | Inmobiliaria            |
+| PLD       | Prologis, Inc                                   | Inmobiliaria            |
+| DLR       | Digital Realty Trust, Inc                       | Inmobiliaria            |
+| 0688.HK   | China Overseas Land & Investment Limited        | Inmobiliaria            |
+| LIN       | Linde plc                                       | Materiales              |
+| BHP.AX    | BHP Group                                       | Materiales              |
+| RIO.L     | Rio tinto Group                                 | Materiales              |
+| AI.PA     | L'Air Liquide S.A                               | Materiales              |
+| 2010.SR   | Saudi Basic Industries                          | Materiales              |
+| LMT       | Lockhedd Martin Corporation                     | Materiales Industriales |
+| HON       | Honeywell International Inc                     | Materiales Industriales |
+| UPS       | United Parcel Service. Inc                      | Materiales Industriales |
+| UNP       | Union Pacific Corporation                       | Materiales Industriales |
+| RTX       | Raytheon Technologies Corporation               | Materiales Industriales |
+| AMZN      | Amazon.com, Inc                                 | Consumo Discrecional    |
+| BABA      | Alibaba Group Holding Limited                   | Consumo Discrecional    |
+| HD        | The Home Depot, Inc                             | Consumo Discrecional    |
+| MC.PA     | LVMH Louis Vuitton, Société Europèenne          | Consumo Discrecional    |
+| 7203.T    | Toyota Motor Corporation                        | Consumo Discrecional    |
+| WMT       | Walmart Inc                                     | Retail                  |
+| PG        | PThe Procter & Gamble Company                   | Retail                  |
+| KO        | The Coco-Cola Company                           | Retail                  |
+| PEP       | PesiCo Inc                                      | Retail                  |
+| NSRGY     | Nestlé S.A                                      | Retail                  |
+| JNJ       | ohnson & Johnson                                | Cuidado Personal        |
+| UNH       | UnitedHealth Group Incorporated                 | Cuidado Personal        |
+| PFE       | Pfizer Inc                                      | Cuidado Personal        |
+| MRK       | Merk & Co., Inc                                 | Cuidado Personal        |
+| RHHBY     | Roche Holding AG                                | Cuidado Personal        |
+| VTI       | Vanguard Total Stock Market ETF                  | Financiera              |
+| VOO       | Vanguard S&P 500 ETF                            | Financiera              |
+| BRK-A     | Bekshire Hathaway Inc                           | Financiera              |
+| 1398.HK   | Industrial and Commercial Bank of China Limited | Financiera              |
+| JPM       | JPMorgan Chase & Co                             | Financiera              |
+| MSTF      | Microsoft Corporation                           | Tecnología              |
+| APPL      | Apple Inc                                       | Tecnología              |
+| V         | Visa Inc                                        | Tecnología              |
+| 005930.KS | Samsung Electronics                             | Tecnología              |
+| MA        | Mastercard Incorporated                         | Tecnología              |
+| GOOG.L    | Alphabet Inc                                    | Comunicación            |
+| FB        | Facebook, Inc                                   | Comunicación            |
+| 0700.HK   | Tencent Holdings Limited                        | Comunicación            |
+| VS        | Verizon Communications Inc                      | Comunicación            |
+| T         | AT&T Inc                                        | Comunicación            |
+
+
 
 * Para considerar el comportamiento histórico de las acciones de dichas empresas, se consideró la información financiera de los últimos 5 años para hacer el análisis (esto es, desde el 1 de enero de 2015 al 30 de abril de 2020). Dicha información se obtuvo del API de Python que permite obtener datos desde Yahoo Finance, considerándose como valores de referencia de los activos a los precios diarios **Closed Price** (es decir, los precios al cierre de la bolsa).
 
@@ -132,44 +185,59 @@ El proceso comentado, se resumen a continuación:
 
 ### 3.3 Solver basado en el método de Newton con restricciones de igualdad
 
-Es relevante destacar que en la teoría de optimización, es posible aproximar las soluciones de un problema de optimización sujeto a restricciones lineales
+Es relevante destacar que en la teoría de optimización, es posible aproximar las soluciones de un problema de optimización sujeto a restricciones lineales, si se cumplen ciertos supuestos:
+
+* La función objetivo es convexa y dos veces continuamente diferenciables,
+* El número de restricciones es menor al número de variables y tales restricciones son idenpendientes,
+
+En tal caso, es posible probar que por condiciones necesarias y suficientes de Karush-Kuhn-Tucker (también conocidas como las condiciones KKT o Kuhn-Tucker), es posible observar que la solución del problema de minimización equivale a resolver un problema denominado "dual". Concretamente se sabe que, existe una equivalencia lógica entre las siguientes proposiciones:
+
+* ![x^* \in dom(f)](https://render.githubusercontent.com/render/math?math=x%5E*%20%5Cin%20dom(f)) es óptimo
+* ![\exists \nu^* \in \mathbb{R}^p (Ax^*=b, \nabla f(x^*)+ A^T \nu^*=0)](https://render.githubusercontent.com/render/math?math=%5Cexists%20%5Cnu%5E*%20%5Cin%20%5Cmathbb%7BR%7D%5Ep%20(Ax%5E*%3Db%2C%20%5Cnabla%20f(x%5E*)%2B%20A%5ET%20%5Cnu%5E*%3D0))
+
+Nota: típicamente las ecuaciones involucradas se denominan a través de la siguiente terminología:
+
+* Ecuaciones de factbilidad primal: ![A x^* =b](https://render.githubusercontent.com/render/math?math=A%20x%5E*%20%3Db)
+* Ecuaciones de factbilidad dual: ![\nabla f(x^*)+ A^T \nu^*=0](https://render.githubusercontent.com/render/math?math=%5Cnabla%20f(x%5E*)%2B%20A%5ET%20%5Cnu%5E*%3D0)
+
+Aprovechando lo anterior, se puede extender el método de Newton para resolver las ecuaciones de KKT, de manera que pueda aproximarse la solución del problema de optimización original; ello se basa en los siguientes hechos:
+
+* a) El punto inicial debe ser factible, es decir debe estar en el dominio de la función objetivo y satisfacer las restricciones lineales,
+* b) El paso de Newton se debe modificar para que satisfaga las conducentes restricciones.
+* c) Lo anterior se puede lograr aproximando la función objetivo, considerando su expansión derivada del teorema de Taylor hasta el término de segundo orden, ![\hat{f}(x+ \nu^*)](https://render.githubusercontent.com/render/math?math=%5Chat%7Bf%7D(x%2B%20%5Cnu%5E*)), de modo que puede considerarse un nuevo problema de optimización dado por ![\min \hat{f}(x+ \nu^*)](https://render.githubusercontent.com/render/math?math=%5Cmin%20%5Chat%7Bf%7D(x%2B%20%5Cnu%5E*)) sujeto a ![\A(x+ \nu^*)=b](https://render.githubusercontent.com/render/math?math=%5CA(x%2B%20%5Cnu%5E*)%3Db).
+* d) El paso de Newton en un punto ![x](https://render.githubusercontent.com/render/math?math=x), se define como la solución única al problema de minimización cuadrática previo con matriz KKT no singular; el cual se denota específicamente como ![\Delta x_t](https://render.githubusercontent.com/render/math?math=%5CDelta%20x_t) y se encuentra en términos de las ecuaciones matriciales:
 
 
-Consideraciones:
+![\begin{bmatrix} \nabla^2 f(x) & A^T \\ A & 0  \end{bmatrix} ](https://render.githubusercontent.com/render/math?math=%5Cbegin%7Bbmatrix%7D%20%5Cnabla%5E2%20f(x)%20%26%20A%5ET%20%5C%5C%20A%20%26%200%20%20%5Cend%7Bbmatrix%7D%20) ![= \begin{bmatrix} \Delta x_t  \\ W  \end{bmatrix} ](https://render.githubusercontent.com/render/math?math=%3D%20%5Cbegin%7Bbmatrix%7D%20%5CDelta%20x_t%20%20%5C%5C%20W%20%20%5Cend%7Bbmatrix%7D%20) ![= \begin{bmatrix} -\nabla f(x)  \\ 0  \end{bmatrix} ](https://render.githubusercontent.com/render/math?math=%3D%20%5Cbegin%7Bbmatrix%7D%20-%5Cnabla%20f(x)%20%20%5C%5C%200%20%20%5Cend%7Bbmatrix%7D%20)
 
-1) El punto inicial debe ser factible, es decir: <img src="https://render.githubusercontent.com/render/math?math=w\in domf"> , <img src="https://render.githubusercontent.com/render/math?math=w^T\mu = r"> y <img src="https://render.githubusercontent.com/render/math?math=w^T1_{n} = 1">
+En este caso *w* es la variable óptima dual asociada.
 
-2) El paso de Newton <img src="https://render.githubusercontent.com/render/math?math=\Delta w">, debe modificarse de modo que satisfaga las reestricciones.
+Notas:
+1) En este caso, las implementaciones típicamente echan mano de una cantidad conocida como *decremento de Newton*
+![\lambda(x)=(\Delta {x_n}_t^T \nabla^2 f(x) \Delta {x_n}_t)^{1/2}](https://render.githubusercontent.com/render/math?math=%5Clambda(x)%3D(%5CDelta%20%7Bx_n%7D_t%5ET%20%5Cnabla%5E2%20f(x)%20%5CDelta%20%7Bx_n%7D_t)%5E%7B1%2F2%7D), la cual guarda información útil en las búsquedas de direcciones factibles, como las búsquedas de línea y que puede emplearse como criterio de paro en procesos iterativos, como en el que nos ocupa,
+
+Con todos los elementos anteriores, nos encontramos en condiciones de describir el Algortimo del método de Newton para un problema de optimización con restricciones de igualdad:
+
+* Repetir hasta convergencia:
+  * 1. Calcular el paso y decremento de Newton, ![{x_n}_t^T, \lambda(x)](https://render.githubusercontent.com/render/math?math=%7Bx_n%7D_t%5ET%2C%20%5Clambda(x))
+  * 2. *Revisar criterio de paro:* terminar método si ![\frac{ \lambda(x)}{2} \leq \epsilon](https://render.githubusercontent.com/render/math?math=%5Cfrac%7B%20%5Clambda(x)%7D%7B2%7D%20%5Cleq%20%5Cepsilon),
+  * 3. *Búsqueda de línea:* elegir el método de paso por backtracking line search,
+  * 4. *Actualizar:* ![x+t \Delta {x_n}_t](https://render.githubusercontent.com/render/math?math=x%2Bt%20%5CDelta%20%7Bx_n%7D_t)
 
 
 #### 3.3.1 Diagrama de flujo del solver basado en el método de Newton con restricciones de igualdad
 
 La implementación de este método se dividió en una serie de etapas:
 
-* **Etapa I:** se refiere a ...,
-* **Etapa II:** corresponde a la estimación de ...
-* **Etapa III:** relativa a la aproximación de ...
+* **Etapa I:** se refiere a la obtención de los datos de portafolios a analizar, junto con su limpieza y transformación para posteriores análisis,
+* **Etapa II:** corresponde a la estimación de tres elementos base del modelo, a saber el retorno esperado de los activos, el valor medio esperado de los mismo junto con la matriz de covarianzas asociada.
+* **Etapa III:** relativa a la aproximación de la solución del problema original de optimización con el algortimo recién descrito, lo que posibilidad aproximar los pesos que permiten integrar el portafolio de inversión que posee **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo.
 
 El proceso comentado, se resumen a continuación:
 
 [WIP: modificar diagrama]
 
 ![Diagrama de flujo](./images/diagrama_flujo.png)
-
-
-### Aproximación de segundo orden
-Supongase que w es un punto factible del problema y desarrollese vía el teorema de Taylor la aproximación de segundo orden con centro en el punto w para f
-
-<img src="https://render.githubusercontent.com/render/math?math=f: \hat{f}(w \oplus + v) = f(w) \oplus \Delta f(w)^Tv \oplus \frac{1}{2}v^T\Delta^2f(w)v">
-
-Entonces el problema que se resolvera es:
-min <img src="https://render.githubusercontent.com/render/math?math=\hat{f}(w\oplus v)">
-
-Sujeto a:
-- <img src="https://render.githubusercontent.com/render/math?math=(w\oplus v)^T\mu=r">
-- <img src="https://render.githubusercontent.com/render/math?math=(w\oplus v)^T1_{n}=1">
-
-con variable  <img src="https://render.githubusercontent.com/render/math?math=v \in R^n">, el cual como f es convexa es un problema convexo de minimización cuadrática con reestricciones de igualdad.
 
 ## Organización del equipo
 
@@ -198,6 +266,69 @@ La división anterior se puede resumir mediante la siguiente tabla:
 | 4    | Grupo de revisión/ Ayudante de programación| León         |
 | 5    | Grupo de revisión/ Contexto Teórico        | Yalidt       |
 | 6    | Project Manager                            | Danahi       |
+
+## Flujo de trabajo en Github
+
+Para facilitar el desarrollo de forma colaborativa entre los equipos de programación y revisión, se siguió un *Github flow*, que consistió, en líneas generales, en la creación de ramas para resolver un issue específico, para solicitar la revisión del PM a través de un *Pull request*, y su posterior aprobación para unir los cambios hacia la rama *master*.
+
+![gitflow](./images/gitflow.png)
+
+**Fuente:** Notas del curso *Programación para Ciencia de Datos* de la Maestría en Ciencia de Datos del ITAM (2019). Véase https://github.com/ITAM-DS/programming-for-data-science-2019/blob/master/handbook.pdf
+
+Cabe destacar que una vez solucionado el issue correspondiente, se borró la rama asociada para facilitar el entendimiento y administración del proyecto.
+
+## Requerimientos de infraestructura
+A efecto de que el los equipos de programación y revisión tuvieran un entorno común de trabajo para el desarrollo del proyecto, se empleó Google Colab. Para las pruebas en AWS, se usó una instancia con las siguientes características:
+
+[WIP: especificar]
+
+## Organización del proyecto
+
+La organización del proyecto se realizó a través una serie de carpetas, entre las cuales destacan:
+
+* [WIP: especificar]
+
+En complemento, se presenta una versión esquemática de la organización de repositorio del proyecto:
+
+```bash
+    .
+    ├── LICENSE
+    ├── README.md
+    ├── burning_bus
+    ├── conf
+    │   ├── base
+    │   └── local
+    ├── docs
+    ├── images
+    ├── infrastructure        <- Carpeta de infraestructura AWS y Docker
+    │   ├── Dockerfile
+    │   ├── Readme.md
+    │   └── Solver_AWS.ipynb
+    ├── notebooks
+    │   ├── Programacion      <- Carpeta de reportes de programacion
+    │   └── Revision          <- Carpeta de reportes de revision
+    ├── references
+    │   ├── Minutas
+    │   └── algorithms_for_ceco.py
+    ├── requirements-dev.txt
+    ├── requirements.txt
+    ├── results                <- Carpeta de reporte ejecutivo de resultados
+    │   └── ReporteResultados.ipynb
+    ├── setup.py
+    ├── sql
+    └── src
+        ├── __init__.py
+        ├── etl
+        ├── pipeline
+        └── utils
+
+    18 directories, 17 files
+
+```
+
+
+
+
 
 
 ## Referencias
