@@ -4,38 +4,15 @@ from solver.utils import inc_index
 from solver.utils import dec_index
 
 
-def gfo_cp_mark(x):
-    v = x[0:(x.size-2)]
-    value1 = x[x.size-2]
-    value2 = x[x.size-1]
-    #m,n=Sigma.shape
-    first_block = Sigma@v -1/2*value1*mu -1/2*value2*unos
-    second_block = -1/2*(v.dot(mu)-r)
-    third_block = -1/2*(v.dot(unos)-1)
-    first_block_np = cp.asnumpy(first_block)
-    second_block_np = cp.asnumpy(second_block)
-    third_block_np = cp.asnumpy(third_block)
+def gfo_cp_mark(x,Sigma):
+    first_block = Sigma@x
     #es necesario pasar los bloques a numpy para poder hacerles concatenate 
-    return cp.asarray(np.concatenate((first_block_np,np.array([second_block_np]),np.array([third_block_np]))))
+    return first_block
 
 
-
-def Hfo_cp_mark(x):
-    v = x[0:(x.size-2)]
-    value1 = x[x.size-2]
-    value2 = x[x.size-1]
-    m,n=Sigma.shape
+def Hfo_cp_mark(x, Sigma):
     first_block = Sigma 
-    second_block = -1/2*mu
-    third_block = -1/2*unos
-    fs_block = cp.column_stack((first_block, second_block, third_block))
-    fourth_block = -1/2*mu
-    fifth_block = -1/2*unos
-    sixth_block = cp.zeros((2,2))
-    #es necesario pasar los bloques a numpy para poder hacerles concatenate y row_stack
-    tf_block = np.column_stack(( np.row_stack((cp.asnumpy(fourth_block),cp.asnumpy(fifth_block))),cp.asnumpy(sixth_block)))
-    return cp.asarray(np.row_stack((cp.asnumpy(fs_block), tf_block)))
-
+    return first_block
 
 
 def gradient_approximation(f,x,h=1e-8):
@@ -96,7 +73,8 @@ import solver
 def Newtons_method_feasible_init_point(f, A, x_0, tol, 
                                        tol_backtracking, x_ast=None, p_ast=None, maxiter=30,
                                        gf_symbolic = None,
-                                       Hf_symbolic = None):
+                                       Hf_symbolic = None,
+                                       Sigma = None):
     '''
     Newton's method to numerically approximate solution of min f subject to Ax = b.
     IMPORTANT: this implementation requires that initial point x_0, satisfies: Ax_0 = b
@@ -129,12 +107,12 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
     feval = f(x)
     
     if gf_symbolic:
-        gfeval = gf_symbolic(x)
+        gfeval = gf_symbolic(x,Sigma)
     else:
         gfeval = gradient_approximation(f,x)
 
     if Hf_symbolic:
-        Hfeval = Hf_symbolic(x)
+        Hfeval = Hf_symbolic(x,Sigma)
     else:
         Hfeval = Hessian_approximation(f,x)
     
@@ -162,9 +140,9 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
     x_plot = cp.zeros((n,maxiter))
     x_plot[:,iteration] = x
     
-    system_matrix = np.row_stack((first_stack,second_stack))
+    system_matrix = cp.vstack((first_stack,second_stack))
     zero_vector = cp.zeros(p)
-    rhs = np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
+    rhs = cp.vstack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
 
     #Newton's direction and Newton's decrement
     dir_desc = cp.linalg.solve(system_matrix, -rhs)
@@ -175,11 +153,12 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
 
     print('I\tNormgf \tNewton Decrement\tError x_ast\tError p_ast\tline search\tCondHf')
     print('{}\t{}\t{}\t{}\t{}\t{}\t\t{}'.format(iteration,
-                                                normgf,
-                                                dec_Newton,
-                                                Err,
-                                                Err_plot_aux[iteration],"---",
-                                                condHf))
+                                                cp.around(normgf,4),
+                                                cp.around(dec_Newton,4),
+                                                cp.around(Err,4),
+                                                cp.around(Err_plot_aux[iteration],4),
+                                                "---",
+                                                cp.around(condHf,4)))
     stopping_criteria = dec_Newton/2
     iteration+=1
     while(stopping_criteria>tol and iteration < maxiter):
@@ -190,12 +169,12 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
         
         
         if gf_symbolic:
-            gfeval = gf_symbolic(x)
+            gfeval = gf_symbolic(x,Sigma)
         else:
             gfeval = gradient_approximation(f,x)
         
         if Hf_symbolic: 
-            Hfeval = Hf_symbolic(x)
+            Hfeval = Hf_symbolic(x,Sigma)
         else:
             Hfeval = Hessian_approximation(f,x)
         if(A.ndim == 1):
@@ -203,8 +182,8 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
         else:
             first_stack = cp.column_stack((Hfeval, A.T))
 
-        system_matrix = np.row_stack((first_stack,second_stack))
-        rhs = np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
+        system_matrix = cp.vstack((first_stack,second_stack))
+        rhs = cp.vstack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
         #Newton's direction and Newton's decrement
         dir_desc = cp.linalg.solve(system_matrix, -rhs)
         dir_Newton = dir_desc[0:n]
@@ -215,10 +194,12 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
         x_plot[:,iteration] = x
         Err = solver.utils.compute_error(x_ast,x)
         print('{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(iteration,
-                                                  normgf,
-                                                  dec_Newton,Err,
-                                                  Err_plot_aux[iteration],t,
-                                                  cp.asarray(condHf)))
+                                                  cp.around(normgf,4),
+                                                  cp.around(dec_Newton,4),
+                                                  cp.around(Err,4),
+                                                  cp.around(Err_plot_aux[iteration],4),
+                                                  cp.around(t,4),
+                                                  cp.around(condHf,4)))
         stopping_criteria = dec_Newton/2
         if t<tol_backtracking: #if t is less than tol_backtracking then we need to check the reason
             iter_salida=iteration
