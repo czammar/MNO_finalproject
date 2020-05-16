@@ -106,7 +106,7 @@ def formar_omegas(r, mu, Sigma):
   return w_0, w_1
 
 
-def markowitz(r, mu, Sigma, stocks = ""):
+def markowitz(r, mu, Sigma, stocks = "", df=True):
   '''
   Calcula las cantidades w_o y w_ del problema de Markowitz
 
@@ -130,9 +130,14 @@ def markowitz(r, mu, Sigma, stocks = ""):
   # Formamos w_0 y w_1
   w_0, w_1 = formar_omegas(r, mu, Sigma)
   aux = w_0*u+w_1*v
-  w =pd.DataFrame(aux, stocks, columns = ['peso'])
-  w.index.name = 'acción'
-  w = w.sort_values(by=['peso'], ascending=False)
+
+  if df is True:
+    w =pd.DataFrame(aux, stocks, columns = ['peso'])
+    w.index.name = 'acción'
+    w = w.sort_values(by=['peso'], ascending=False)
+
+  else:
+    w = aux
   return w
 
 
