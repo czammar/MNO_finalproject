@@ -1,7 +1,24 @@
 # Implementación del modelo Markowitz
 
+## 1. Índice
 
-## Descripción del problema
++ Descripcion del problema
++ Consideraciones metodológicas:
+  + Portafolio de activos y sus rendimiento,
+  + Solver basado en multiplicadores de Lagrage,
+  + Solver basado en método de Newton,
++ Estructura del repositorio,
++ Instrucciones para AWS y Docker
++ Reporte de Resultados
++ Reportes de Equipos:
+  + Programación
+  + Revisión
+
+
+[WIP: Añadir índice al repositorios y referencias cruzadas]
+
+
+## 2. Descripción del problema
 
 En el contexto de finanzas, un problema relevante es definir estrategias que permitan a los inversionista diversificar sus inversiones con el objetivo de minimizar el riesgo de su capital. Típicamente, esto corresponde con que un inversionista tiene interés en un conjunto definido de activos, denominado *portafolio*, sobre el que debe tomar una decisión sobre como adquirir o vender acciones con la idea obtener un determinado rendimiento ![r > 0](https://render.githubusercontent.com/render/math?math=r%20%3E%200). Sin embargo, es deseable que la elección considere reducir el riesgo inherente al mercado de inversiones.
 
@@ -20,30 +37,35 @@ Resolver este problema nos permite encontrar como se integra el portafolio que d
 
 ![alt-text](https://github.com/czammar/MNO_finalproject/blob/master/images/frontera_eficiente.png)
 
-Es así que  propósito de este proyecto será desarrollar estrategias que permitan resolver el modelo de Markovitz empleando herramientas de optimización y cómputo distribuido, particularmente aprovechando la disponibilidad de tarjetas GPU, así como el framework Cupy de Python para este tipo de  hardware. En adición, en este proyecto se busca echar mano de herramientas de computo en la nube y ambientes de virtualización, concretamente AWS y Docker.
+Es así que  propósito de este proyecto será desarrollar estrategias que permitan resolver el modelo de Markowitz empleando herramientas de optimización y cómputo distribuido, particularmente aprovechando la disponibilidad de tarjetas GPU, así como el framework Cupy de Python para este tipo de  hardware. En adición, en este proyecto se busca echar mano de herramientas de computo en la nube y ambientes de virtualización, concretamente AWS y Docker.
 
-A continuación se describen 
-
-### Fase 1
-
-## Organización
-
-Para el desarrollo de esta fase del proyecto, los integrantes se dividieron principalmente en dos grupos; el **Grupo de programación** encargado de la implementación de los métodos y algoritmos; y el **Grupo de revisión** encargado de probar y reportar los métodos del primer grupo. Ambos grupos fueron coordinados por el **Project Manager** con ayuda de un **Asistente**.
-
-La división anterior se puede resumir mediante la siguiente tabla:
-
-| #    | Rol                                   | Persona      |
-| ---- | --------------------------------------| ------------ |
-| 1    | Grupo de programación                 | Bruno        |
-| 2    | Grupo de programación                 | Itzel        |
-| 3    | Grupo de programación                 | César        |
-| 4    | Grupo de revisión                     | León         |
-| 5    | Grupo de revisión/Asistente de PM     | Danahi       |
-| 6    | Project Manager                       | Yalidt       |
+A continuación se describen la estructura del presente repositorio, así como los algoritmos planteados para dar solución al modelo en cuestión.
 
 
-## Metodología de la Fase 1
+## 3. Consideraciones metodológicas
 
+### 3.1 Portafolio de activos, sus rendimientos y pesos.
+
+* Tras analizar las fuentes de datos disponibles, se estableció considerar precios históricos de las 50 empresas, que destacan en sus correspondientes industria,  seleccionándose las que tienen mayor participación en el mercado (al momento de realizar este proyecto). En concreto, se consideraron  las empresas:
+
+[WIP: Añadir tabla de nombre de empresas junto con sus acrónimos]
+
+* Para considerar el comportamiento histórico de las acciones de dichas empresas, se consideró la información financiera de los últimos 5 años para hacer el análisis (esto es, desde el 1 de enero de 2015 al 30 de abril de 2020). Dicha información se obtuvo del API de Python que permite obtener datos desde Yahoo Finance, considerándose como valores de referencia de los activos a los precios diarios **Closed Price** (es decir, los precios al cierre de la bolsa).
+
+* En complemento, para el cálculo de los rendimientos esperados de cada una de las empresas, se estímó pertinente evaluarlo a través de los precios de cierre diarios a partir de la fórmula del *rendimiento instantáneo* en escala logarítimica:
+
+![r=log\tfrac{P_t}{P_{t-1}}](https://render.githubusercontent.com/render/math?math=R%3Dlog%5Ctfrac%7BPt%7D%7BPt-1%7D)<br />
+
+Ello para evitar problemas numéricos debidos a la escala de los rendimientos.
+
+* En lo tocante a como se debe determinar el vector de pesos asociado al portafolio de activos![$W$](https://render.githubusercontent.com/render/math?math=%24W%24), se consideró relevante pensarlos como una proporción, lo que equivale a que la suma de la entradas sea igual a 1.
+
+* Por otro lado, el rendimiento esperado del portafolio se obtiene haciendo el producto punto del vector de rendimientos medios de los activos en el periodo en cuestión y los pesos del portafolio elegido, cumpliendo los portafolios factibles la restricción ![r=w^t \mu](https://render.githubusercontent.com/render/math?math=r%3Dw%5Et%20%5Cmu)
+
+* Finalmente, la matriz de varianzas y covarianzas de los portafolios se calcula como las correspondientes matrices de varianzas y covarianzas rendimientos de las acciones en el periodo de los últimos 5 años para hacer el análisis (1 de enero de 2015 al 30 de abril de 2020).
+
+
+### 3.2 Fase 1:
 En este caso, el problema de minimización se aborda calculando la solución analítica del problema de optimización recién descrito, empleando la expresión del Lagrangiano del
 problema de optimización considerando las respectivas restricciones, aprovechando que la matriz de covarianzas es simétrica y definida positiva.
 
@@ -145,33 +167,6 @@ Sujeto a:
 
 ### Fase 2
 
-## Organización
-
-Para el desarrollo de esta fase del proyecto, los integrantes se dividieron principalmente en dos grupos; el **Grupo de programación** encargado de la implementación de los métodos y algoritmos; y el **Grupo de revisión** encargado de probar y reportar los métodos del primer grupo así como **apoyo** para otras actividades referentes al proyecto. Ambos grupos fueron coordinados por el **Project Manager**.
-
-La división anterior se puede resumir mediante la siguiente tabla:
-
-| #    | Rol                                        | Persona      |
-| ---- | -------------------------------------------| ------------ |
-| 1    | Grupo de programación                      | Bruno        |
-| 2    | Grupo de programación                      | Itzel        |
-| 3    | Grupo de programación                      | César        |
-| 4    | Grupo de revisión/ Ayudante de programación| León         |
-| 5    | Grupo de revisión/ Contexto Teórico        | Yalidt       |
-| 6    | Project Manager                            | Danahi       |
-
-## Descripción del problema
-
-En esta fase el objetivo es desarrollar el código para resolver ahora el problema del modelo de Markowitz no con la solución cerrada, sino con un **algoritmo de optimización sujeto a restricciones de igualdad**.
-
-## Problema de optimización
-
-![\min_{w} \frac{1}{2}w^T\Sigma w](https://render.githubusercontent.com/render/math?math=%5Cmin_%7Bw%7D%20%5Cfrac%7B1%7D%7B2%7Dw%5ET%5CSigma%20w)
-
-Sujeto a las restricciones lineales:
-- El inversionista el rendimiento que vislumbra: <img src="https://render.githubusercontent.com/render/math?math=w^T\mu=r">
-- Los pesos de los activos se encuentran distribuidos congruentemente sobre el portafolio s<img src="https://render.githubusercontent.com/render/math?math=w^T1_{n}=1">
-
 ## Método de Newton con reestricciones de igualdad
 
 Consideraciones:
@@ -194,6 +189,34 @@ Sujeto a:
 - <img src="https://render.githubusercontent.com/render/math?math=(w\oplus v)^T1_{n}=1">
 
 con variable  <img src="https://render.githubusercontent.com/render/math?math=v \in R^n">, el cual como f es convexa es un problema convexo de minimización cuadrática con reestricciones de igualdad.
+
+## Organización del equipo
+
+Para el desarrollo del proyecto, los integrantes se dividieron principalmente en dos grupos; el **Grupo de programación** encargado de la implementación de los métodos y algoritmos; y el **Grupo de revisión** encargado de probar y reportar los métodos del primer grupo. Ambos grupos fueron coordinados por el **Project Manager** con ayuda de un **Asistente**.
+
+La división anterior se puede resumir mediante la siguiente tabla:
+
+**Fase 1: Implementación empleando método de Lagrange**
+
+| #    | Rol                                   | Persona      |
+| ---- | --------------------------------------| ------------ |
+| 1    | Grupo de programación                 | Bruno        |
+| 2    | Grupo de programación                 | Itzel        |
+| 3    | Grupo de programación                 | César        |
+| 4    | Grupo de revisión                     | León         |
+| 5    | Grupo de revisión/Asistente de PM     | Danahi       |
+| 6    | Project Manager                       | Yalidt       |
+
+**Fase 2: Implementación usando método de Newton**
+
+| #    | Rol                                        | Persona      |
+| ---- | -------------------------------------------| ------------ |
+| 1    | Grupo de programación                      | Bruno        |
+| 2    | Grupo de programación                      | Itzel        |
+| 3    | Grupo de programación                      | César        |
+| 4    | Grupo de revisión/ Ayudante de programación| León         |
+| 5    | Grupo de revisión/ Contexto Teórico        | Yalidt       |
+| 6    | Project Manager                            | Danahi       |
 
 
 ## Referencias
