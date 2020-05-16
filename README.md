@@ -231,13 +231,11 @@ La implementación de este método se dividió en una serie de etapas:
 
 * **Etapa I:** se refiere a la obtención de los datos de portafolios a analizar, junto con su limpieza y transformación para posteriores análisis,
 * **Etapa II:** corresponde a la estimación de tres elementos base del modelo, a saber el retorno esperado de los activos, el valor medio esperado de los mismo junto con la matriz de covarianzas asociada.
-* **Etapa III:** relativa a la aproximación de la solución del problema original de optimización con el algortimo recién descrito, lo que posibilidad aproximar los pesos que permiten integrar el portafolio de inversión que posee **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo.
+* **Etapa III:** relativa a la aproximación de la solución del problema original de optimización con el algortimo recién descrito, lo que posibilidad aproximar los pesos que permiten integrar el portafolio de inversión que posee **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo. En este caso, se obtiene primero una propuesta de punto factible del problema de Markowitz (esencialmente, obtenida resolviendo las ecuaciones normales asociadas a las restricciones lineales) la cual alimenta al solver del problema de optimización con restricciones que se basado en el método de Newton para aproximar una solución del problema de optimización, siguiendo las consideraciones expuestas en la sección previa.
 
 El proceso comentado, se resumen a continuación:
 
-[WIP: modificar diagrama]
-
-![Diagrama de flujo](./images/diagrama_flujo.png)
+![Diagrama de flujo](./images/diagrama_flujo2.png)
 
 ## Organización del equipo
 
