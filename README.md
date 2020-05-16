@@ -19,11 +19,11 @@ La división anterior se puede resumir mediante la siguiente tabla:
 
 ## Descripción del problema
 
-Se busca desallorar un algoritmo(en paralelo) para encontrar la proporción de dinero que cierto inversionista debe invertir en un conjunto de acciones. A estas proporciones las denotaremos **wi**, que finalmente es un vector de tamaño nx1, donde n es el número de acciones a analizar. Este algoritmo se basa en el modelo de Markovitz, que de acuerdo a una frontera de posibilidades de alocación se busca la parte superior de esa frontera, ya que justamente en esa parte los rendimientos son positivos.
+Se busca desallorar un algoritmo (capaz de ser desplegado en GPU) para encontrar la proporción de dinero que cierto inversionista debe invertir en un conjunto de acciones. A estas proporciones las denotaremos **![w_i](https://render.githubusercontent.com/render/math?math=w_i)**, que finalmente es un vector de tamaño ![n \times 1](https://render.githubusercontent.com/render/math?math=n%20%5Ctimes%201), donde ![n \times 1](https://render.githubusercontent.com/render/math?math=n%20%5Ctimes%201) es el número de acciones a analizar. Este algoritmo se basa en el modelo de Markovitz, que de acuerdo a una frontera de posibilidades de alocación se busca la parte superior de esa frontera, ya que justamente en esa parte los rendimientos son positivos.
 
 ![alt-text](https://github.com/czammar/MNO_finalproject/blob/master/images/frontera_eficiente.png)
 
-La finalidad del algoritmo será encontrar el portafolio de **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo.
+La finalidad del algoritmo será encontrar, el portafolio que dado un rendimiento ![r > 0](https://render.githubusercontent.com/render/math?math=r%20%3E%200) esperado el inversionista, tenga varianza **mínima varianza** , el cual corresponde con el perfil de los inversionistas que son aversos al riesgo.
 
 ## Metodología
 1) Obtener base de datos de precios históricos de 50 empresas que coticen en bolsa, se obtendrá un conjunto de empresas por cada industria en el mercado y se seleccionaran las que tengan mayor participación en el mercado. Esta información la obtendremos de Yahoo Finance y los precios serán diarios **Closed Price**(al cierre de la bolsa)de los últimos 5 años para hacer el análisis. Se realizará un proceso de extracción de la base de datos definida en la etapa 1 del diagrama de flujo.

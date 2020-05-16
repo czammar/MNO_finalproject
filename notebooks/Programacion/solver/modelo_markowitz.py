@@ -105,8 +105,8 @@ def formar_omegas(r, mu, Sigma):
 
   return w_0, w_1
 
+def markowitz(r, mu, Sigma):
 
-def markowitz(r, mu, Sigma, stocks = "", df=True):
   '''
   Calcula las cantidades w_o y w_ del problema de Markowitz
 
@@ -115,29 +115,39 @@ def markowitz(r, mu, Sigma, stocks = "", df=True):
     Sigma (cupy array, matriz): matriz de covarianzas asociada a activos (dimension n x n)
 
   Return:
-    w_0 (cupy array, matriz): matriz dada por 
-          w_0 = \frac{1}{\Delta} (B \Sigma^{-1} \hat{\mu}- C\Sigma^{-1} 1) 
-    w_1 (cupy array, vector): vector dado por 
-         w_1 = \frac{1}{\Delta} (C \Sigma^{-1} \hat{\mu}- A\Sigma^{-1} 1)
+    w (cupy array, vector): vector de pesos que minimizan la varianza del portfolio
   '''
-
-  if stocks == "":
-    stocks = [i for i in range(len(mu))]
-
   # Obtenemos u = Sigma^{-1} \hat{\mu}, v = \Sigma^{-1} 1
   u, v = formar_vectores(mu, Sigma)
 
   # Formamos w_0 y w_1
   w_0, w_1 = formar_omegas(r, mu, Sigma)
-  aux = w_0*u+w_1*v
 
-  if df is True:
-    w =pd.DataFrame(aux, stocks, columns = ['peso'])
-    w.index.name = 'acción'
-    w = w.sort_values(by=['peso'], ascending=False)
 
-  else:
-    w = aux
-  return w
+  return w_0*u+w_1*v
+
+def markowitz_df(r, mu, Sigma, stocks = ""):
+  '''
+  Crea data frame de la función markowitz relacionando los pesos con las acciones
+
+  Args:
+    r (escalar) : retorno esperado por el inversionista
+    mu (cupy array, vector): valores medios esperados de activos (dimension n)
+    Sigma (cupy array, matriz): matriz de covarianzas asociada a activos (dimension n x n)
+
+  Return:
+    df (DataFrame): Data Frame con acciones como índices y los pesos ordenados correspondientes
+  '''
+
+  if stocks == "":
+    stocks = [i for i in range(len(mu))]
+
+  
+  aux = markowitz(r, mu, Sigma)
+  df =pd.DataFrame(aux, stocks, columns = ['peso'])
+  df.index.name = 'acción'
+  df = df.sort_values(by=['peso'], ascending=False)
+  return df
+
 
 
