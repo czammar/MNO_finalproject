@@ -140,7 +140,7 @@ def markowitz_df(r, mu, Sigma, stocks):
     df (DataFrame): Data Frame con acciones como índices y los pesos ordenados correspondientes
   '''
 
-  aux = modelo_markowitz.markowitz(r, mu, Sigma)
+  aux = markowitz(r, mu, Sigma)
   df =pd.DataFrame( cp.asnumpy(aux), columns = ['pesos'])
   df["stocks"]=stocks
   df = df.sort_values(by=['pesos'], ascending=False)
