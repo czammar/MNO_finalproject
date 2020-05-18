@@ -45,6 +45,13 @@ def norm_residual(feas_primal, feas_dual):
                    )
 
 def condicion_cupy(A):
+    '''
+    Función que calcula la condición de una matriz para matrices en Cupy
+    Args:
+      A:  Matriz de cupy
+    Return:
+      c: Condición de una matriz
+    '''
     A_inv = cp.linalg.inv(A)
     NAi = cp.linalg.norm(A_inv)
     NA = cp.linalg.norm(A)
