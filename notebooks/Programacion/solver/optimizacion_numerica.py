@@ -4,13 +4,22 @@ from solver.utils import inc_index
 from solver.utils import dec_index
 
 
-def gfo_cp_mark(x,Sigma):
+def gfo_cp_mark(Sigma,x):
+    '''
+    gradiente de la función objetivo 1/2*x.t*Sigma*x
+    input: matriz Sigma y vector x
+    output: producto matriz-vector Sigma*x
+    '''
     first_block = Sigma@x
-    #es necesario pasar los bloques a numpy para poder hacerles concatenate 
     return first_block
 
 
-def Hfo_cp_mark(x, Sigma):
+def Hfo_cp_mark(Sigma):
+    '''
+    Hessiana de la función objetivo 1/2*x.t*Sigma*x
+    input: matriz Sigma
+    output: matriz Sigma
+    '''
     first_block = Sigma 
     return first_block
 
