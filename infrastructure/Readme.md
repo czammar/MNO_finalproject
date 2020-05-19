@@ -97,4 +97,18 @@ docker run --gpus all --rm -v /home/ubuntu/mi_carpeta:/datos --name $nombre_cont
 ```
 
 Y de esta forma ingresamos a *jupyterlab* donde tenemos CuPy.
+
+Para ejecutar los códigos desarrollados en nuestro proyecto, los subimos a un bucket de S3 configurado previamente como se indica en el [wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.1.Configuracion-de-servicios-basicos-para-uso-de-AWS).
+
+ 8. Una vez ingresando a *jupyterlab*, abrimos una terminal, cambiamos a bash y nos colocamos en la carpeta *datos*
+ ```
+ bash
+ cd datos
+ ```
+
+ 9. Estando en la carpeta *datos* cargamos los archivos del bucket de S3 a nuestra carpeta, por ejemplo:
+ ```
+ aws s3 cp s3://<nombre_bucket_s3>/<nombre_archivo> .
+ ```
  
+ De esta forma podemos cargar los [códigos](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure/codigos) de una forma sencilla, y así ejecutar nuestras dos versiones de solver, uno con la solución cerrada y la otra con el método de Newton.
