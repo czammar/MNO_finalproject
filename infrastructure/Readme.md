@@ -111,4 +111,4 @@ Para ejecutar los códigos desarrollados en nuestro proyecto, los subimos a un b
  aws s3 cp s3://<nombre_bucket_s3>/<nombre_archivo> .
  ```
  
- De esta forma podemos cargar los [códigos](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure/codigos) de una forma sencilla, y así ejecutar nuestras dos versiones de solver, uno con la solución cerrada y la otra con el método de Newton.
+ De esta forma podemos cargar los [códigos](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure/codigos) de una forma sencilla, y así ejecutar nuestras dos versiones de solver, en la fase 1 con la solución cerrada y en la fase 2 con el método de Newton.
