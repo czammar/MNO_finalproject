@@ -71,7 +71,7 @@ RUN jupyter notebook --generate-config && sed -i "s/#c.NotebookApp.password = .*
 ENTRYPOINT ["/usr/local/bin/jupyter", "lab", "--ip=0.0.0.0", "--no-browser"]
 ```
 
-Esta configuración es la necesaria para poder ejecutar nuestro [desarrollo](https://github.com/czammar/MNO_finalproject/blob/master/infrastructure/Solver_AWS.ipynb) del modelo Markowitz.
+Esta configuración es la necesaria para poder ejecutar nuestro [desarrollo](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure/codigos) del modelo Markowitz.
 
  4. Se crean variables de ambiente auxiliares y se construye la imagen:
 ```
