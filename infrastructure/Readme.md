@@ -98,7 +98,7 @@ docker run --gpus all --rm -v /home/ubuntu/mi_carpeta:/datos --name $nombre_cont
 
 Y de esta forma ingresamos a *jupyterlab* donde tenemos CuPy.
 
-Para ejecutar los códigos desarrollados en nuestro proyecto, los subimos a un bucket de S3 configurado previamente como se indica en el [wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.1.Configuracion-de-servicios-basicos-para-uso-de-AWS).
+Para ejecutar los códigos desarrollados en nuestro proyecto, los subimos a un bucket de S3 configurado previamente como se indica en el [wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.1.Configuracion-de-servicios-basicos-para-uso-de-AWS) del repositorio de la materia de Metódos Numéricos y Optimización. .
 
  8. Una vez ingresando a *jupyterlab*, abrimos una terminal, cambiamos a bash y nos colocamos en la carpeta *datos*
  ```
