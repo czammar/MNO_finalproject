@@ -185,8 +185,8 @@ El proceso comentado, se resume a continuación:
 
 Es relevante destacar que en la teoría de optimización, es posible aproximar las soluciones de un problema de optimización sujeto a restricciones lineales, si se cumplen ciertos supuestos:
 
-* La función objetivo es convexa y dos veces continuamente diferenciables,
-* El número de restricciones es menor al número de variables y tales restricciones son idenpendientes,
+* La función objetivo es convexa y dos veces continuamente diferenciable,
+* El número de restricciones es menor al número de variables y tales restricciones son independientes,
 
 En tal caso, es posible probar que por condiciones necesarias y suficientes de Karush-Kuhn-Tucker (también conocidas como las condiciones KKT o Kuhn-Tucker), es posible observar que la solución del problema de minimización equivale a resolver un problema denominado "dual". Concretamente se sabe que, existe una equivalencia lógica entre las siguientes proposiciones:
 
@@ -195,12 +195,12 @@ En tal caso, es posible probar que por condiciones necesarias y suficientes de K
 
 Nota: típicamente las ecuaciones involucradas se denominan a través de la siguiente terminología:
 
-* Ecuaciones de factbilidad primal: ![A x^* =b](https://render.githubusercontent.com/render/math?math=A%20x%5E*%20%3Db)
-* Ecuaciones de factbilidad dual: ![\nabla f(x^*)+ A^T \nu^*=0](https://render.githubusercontent.com/render/math?math=%5Cnabla%20f(x%5E*)%2B%20A%5ET%20%5Cnu%5E*%3D0)
+* Ecuaciones de factibilidad primal: ![A x^* =b](https://render.githubusercontent.com/render/math?math=A%20x%5E*%20%3Db)
+* Ecuaciones de factibilidad dual: ![\nabla f(x^*)+ A^T \nu^*=0](https://render.githubusercontent.com/render/math?math=%5Cnabla%20f(x%5E*)%2B%20A%5ET%20%5Cnu%5E*%3D0)
 
-Aprovechando lo anterior, se puede extender el método de Newton para resolver las ecuaciones de KKT, de manera que pueda aproximarse la solución del problema de optimización original; ello se basa en los siguientes hechos:
+Aprovechando lo anterior, se puede extender el método de Newton para resolver las ecuaciones de KKT, de manera que pueda aproximarse la solución del problema de optimización original; esto se basa en los siguientes hechos:
 
-* a) El punto inicial debe ser factible, es decir debe estar en el dominio de la función objetivo y satisfacer las restricciones lineales,
+* a) El punto inicial debe ser factible, es decir debe estar en el dominio de la función objetivo y satisfacer las restricciones lineales.
 * b) El paso de Newton se debe modificar para que satisfaga las conducentes restricciones.
 * c) Lo anterior se puede lograr aproximando la función objetivo, considerando su expansión derivada del teorema de Taylor hasta el término de segundo orden, ![\hat{f}(x+ \nu^*)](https://render.githubusercontent.com/render/math?math=%5Chat%7Bf%7D(x%2B%20%5Cnu%5E*)), de modo que puede considerarse un nuevo problema de optimización dado por ![\min \hat{f}(x+ \nu^*)](https://render.githubusercontent.com/render/math?math=%5Cmin%20%5Chat%7Bf%7D(x%2B%20%5Cnu%5E*)) sujeto a ![\A(x+ \nu^*)=b](https://render.githubusercontent.com/render/math?math=%5CA(x%2B%20%5Cnu%5E*)%3Db).
 * d) El paso de Newton en un punto ![x](https://render.githubusercontent.com/render/math?math=x), se define como la solución única al problema de minimización cuadrática previo con matriz KKT no singular; el cual se denota específicamente como ![\Delta x_t](https://render.githubusercontent.com/render/math?math=%5CDelta%20x_t) y se encuentra en términos de las ecuaciones matriciales:
@@ -219,7 +219,7 @@ Con todos los elementos anteriores, nos encontramos en condiciones de describir 
 * Repetir hasta convergencia:
   * 1. Calcular el paso y decremento de Newton, ![{x_n}_t^T, \lambda(x)](https://render.githubusercontent.com/render/math?math=%7Bx_n%7D_t%5ET%2C%20%5Clambda(x))
   * 2. *Revisar criterio de paro:* terminar método si ![\frac{ \lambda(x)}{2} \leq \epsilon](https://render.githubusercontent.com/render/math?math=%5Cfrac%7B%20%5Clambda(x)%7D%7B2%7D%20%5Cleq%20%5Cepsilon),
-  * 3. *Búsqueda de línea:* elegir el método de paso por backtracking line search,
+  * 3. *Búsqueda de línea:* elegir el tamaño de paso por backtracking line search,
   * 4. *Actualizar:* ![x+t \Delta {x_n}_t](https://render.githubusercontent.com/render/math?math=x%2Bt%20%5CDelta%20%7Bx_n%7D_t)
 
 
@@ -229,7 +229,7 @@ La implementación de este método se dividió en una serie de etapas:
 
 * **Etapa I:** se refiere a la obtención de los datos de portafolios a analizar, junto con su limpieza y transformación para posteriores análisis,
 * **Etapa II:** corresponde a la estimación de tres elementos base del modelo, a saber el retorno esperado de los activos, el valor medio esperado de los mismo junto con la matriz de covarianzas asociada.
-* **Etapa III:** relativa a la aproximación de la solución del problema original de optimización con el algortimo recién descrito, lo que posibilidad aproximar los pesos que permiten integrar el portafolio de inversión que posee **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo. En este caso, se obtiene primero una propuesta de punto factible del problema de Markowitz (esencialmente, obtenida resolviendo las ecuaciones normales asociadas a las restricciones lineales) la cual alimenta al solver del problema de optimización con restricciones que se basado en el método de Newton para aproximar una solución del problema de optimización, siguiendo las consideraciones expuestas en la sección previa.
+* **Etapa III:** relativa a la aproximación de la solución del problema original de optimización con el algortimo recién descrito, lo que da la posibilidad de aproximar los pesos que permiten integrar el portafolio de inversión que posee **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo. En este caso, se obtiene primero una propuesta de punto factible del problema de Markowitz (esencialmente, obtenida resolviendo las ecuaciones normales asociadas a las restricciones lineales) la cual alimenta al solver del problema de optimización con restricciones que se basa en el método de Newton para aproximar una solución del problema de optimización, siguiendo las consideraciones expuestas en la sección previa.
 
 El proceso comentado, se resumen a continuación:
 
@@ -284,7 +284,7 @@ A efecto de que los equipos de programación y revisión tuvieran un entorno com
 
 Para poder utilizar CuPy en la instancia de AWS, se construyó una imagen de Docker con el [Dockerfile](https://github.com/czammar/MNO_finalproject/blob/master/infrastructure/Dockerfile) correspondiente. En esta imagen se instala CuPy, los paquetes necesarios para la ejecución de la [implementación](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure/codigos) del modelo de Markowitz, así como otros requerimientos de software (jupyter, awscli, entre otros). Finalmente se levanta un contenedor a partir de esta imagen, e ingresando a jupyterlab se obtiene el entorno para poder ejecutar los códigos desarrollados.
 
-Los pasos a seguir para levantar la instancia de AWS, construir la imagen de Docker y levantar el contenedor, además de los detalles de configuración se encuentra en la carpeta de [infrastructure](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure)
+Los pasos a seguir para levantar la instancia de AWS, construir la imagen de Docker y levantar el contenedor, además de los detalles de configuración se encuentran en la carpeta de [infrastructure](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure).
 
 ## 6. Organización del proyecto<a name="id9"></a>
 
@@ -296,7 +296,7 @@ Esta carpeta se subdivide en dos, [Programación](https://github.com/czammar/MNO
   
 * [infrastructure](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure)
 
-Carpeta que contiene el dockerfile y donde se explican los pasos a seguir para levantar una instancia en AWS en donde se pueden ejecutar los códigos desarrollados para la implementación del modelo Markowitz en paralelo.
+Carpeta que contiene el Dockerfile y donde se explican los pasos a seguir para levantar una instancia en AWS con las características necesarias, en donde se pueden ejecutar los códigos desarrollados para la implementación del modelo Markowitz en paralelo.
 
 * [results](https://github.com/czammar/MNO_finalproject/tree/master/results)
 
