@@ -282,6 +282,7 @@ A efecto de que los equipos de programación y revisión tuvieran un entorno com
 
 + 4 vCPUs
 
+Para poder utilizar CuPy en la instancia de AWS, se construyó una imagen con el [Dockerfile](https://github.com/czammar/MNO_finalproject/blob/master/infrastructure/Dockerfile). En esta imagen se instala CuPy, los paquetes necesarios para la ejecución de la [implementación](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure/codigos) del modelo de Markowitz, así como otros requerimientos de software (jupyter, awscli, entre otros).
 
 ## 6. Organización del proyecto<a name="id9"></a>
 
