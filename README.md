@@ -118,7 +118,7 @@ Ello para evitar problemas numéricos debidos a la escala de los rendimientos.
 * Finalmente, la matriz de varianzas y covarianzas de los portafolios se calcula como las correspondientes matrices de varianzas y covarianzas rendimientos de las acciones en el periodo de los últimos 5 años para hacer el análisis (1 de enero de 2015 al 30 de abril de 2020).
 
 
-### 2.2 Solver basado en multiplicadores de Lagrage<a name="id4"></a>
+### 2.2 Solver basado en multiplicadores de Lagrange<a name="id4"></a>
 
 En este caso, el problema de minimización se aborda calculando la solución analítica del problema de optimización recién descrito, empleando la expresión del Lagrangiano del
 problema de optimización considerando las respectivas restricciones, aprovechando que la matriz de covarianzas es simétrica y definida positiva.
@@ -275,9 +275,14 @@ Para facilitar el desarrollo de forma colaborativa entre los equipos de programa
 Cabe destacar que una vez solucionado el issue correspondiente, se borró la rama asociada para facilitar el entendimiento y administración del proyecto.
 
 ## 5. Requerimientos de infraestructura<a name="id8"></a>
-A efecto de que el los equipos de programación y revisión tuvieran un entorno común de trabajo para el desarrollo del proyecto, se empleó Google Colab. Para las pruebas en AWS, se usó una instancia con las siguientes características:
+A efecto de que los equipos de programación y revisión tuvieran un entorno común de trabajo para el desarrollo del proyecto, se empleó Google Colab. Una vez desarrollados los códigos, se ejecutaron los mismos en una instancia de AWS. Se eligió la máquina **Deep Learning AMI (Ubuntu 18.04) Version 28.1**, pues tiene una tarjeta gráfica NVIDIA. Las características de la instancia fueron:
 
-[WIP: especificar]
++ Familia GPU
+
++ Tipo p2.xlarge
+
++ 4 vCPUs
+
 
 ## 6. Organización del proyecto<a name="id9"></a>
 
