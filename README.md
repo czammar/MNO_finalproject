@@ -1,24 +1,21 @@
 # Implementación del modelo Markowitz
 
-## 1. Índice
+## 0. Índice
 
-+ Descripcion del problema
-+ Consideraciones metodológicas:
-  + Portafolio de activos y sus rendimiento,
-  + Solver basado en multiplicadores de Lagrange,
-  + Solver basado en método de Newton,
-+ Estructura del repositorio,
-+ Instrucciones para AWS y Docker
-+ Reporte de Resultados
-+ Reportes de Equipos:
-  + Programación
-  + Revisión
-
-
-[WIP: Añadir índice al repositorios y referencias cruzadas de github]
++ [Descripcion del problema](#id1)
++ [Consideraciones metodológicas](#id2)
+  + [Portafolio de activos y sus rendimiento](#id3)
+  + [Solver basado en multiplicadores de Lagrange](#id4)
+  + [Solver basado en método de Newton](#id5)
++ [Organización del equipo](#id6)
++ [Flujo de trabajo en Github](#id7)
++ [Requerimientos de infraestructura](#id8)
++ [Organización del proyecto](#id9)
++ [Referencias](#id10)
 
 
-## 2. Descripción del problema
+
+## 1. Descripción del problema<a name="id1"></a>
 
 En el contexto de finanzas, un problema relevante es definir estrategias que permitan a los inversionista diversificar sus inversiones con el objetivo de minimizar el riesgo de su capital. Típicamente, esto corresponde con que un inversionista tiene interés en un conjunto definido de activos, denominado *portafolio*, sobre el que debe tomar una decisión sobre como adquirir o vender acciones con la idea obtener un determinado rendimiento ![r > 0](https://render.githubusercontent.com/render/math?math=r%20%3E%200).
 Sin embargo, es deseable que la elección considere reducir el riesgo inherente al mercado de inversiones, los que se traduce en obtener el portafolio de *mínima varianza*, que en otras palabras significa obtener el portafolio de menor riesgo para inversionistas aversos al riesgo, donde se espera obtener las ponderaciones o proporciones que el inversionista debe invertir en las acciones evaluadas en un vector de todo el conjunto de acciones.
@@ -43,9 +40,9 @@ Es así que  propósito de este proyecto será desarrollar estrategias que permi
 A continuación se describen la estructura del presente repositorio, así como los algoritmos planteados para dar solución al modelo en cuestión.
 
 
-## 3. Consideraciones metodológicas
+## 2. Consideraciones metodológicas<a name="id2"></a>
 
-### 3.1 Portafolio de activos, sus rendimientos y pesos.
+### 2.1 Portafolio de activos, sus rendimientos y pesos<a name="id3"></a>
 
 * Tras analizar las fuentes de datos disponibles, se estimó pertinente considerar precios históricos de las 50 empresas, que destacan en sus correspondientes industria,  seleccionándose las que tienen mayor participación en el mercado (al momento de realizar este proyecto). En concreto, se consideraron  las empresas:
 
@@ -119,7 +116,7 @@ Ello para evitar problemas numéricos debidos a la escala de los rendimientos.
 * Finalmente, la matriz de varianzas y covarianzas de los portafolios se calcula como las correspondientes matrices de varianzas y covarianzas rendimientos de las acciones en el periodo de los últimos 5 años para hacer el análisis (1 de enero de 2015 al 30 de abril de 2020).
 
 
-### 3.2 Solver basado en multiplicadores de Lagrage
+### 2.2 Solver basado en multiplicadores de Lagrage<a name="id4"></a>
 
 En este caso, el problema de minimización se aborda calculando la solución analítica del problema de optimización recién descrito, empleando la expresión del Lagrangiano del
 problema de optimización considerando las respectivas restricciones, aprovechando que la matriz de covarianzas es simétrica y definida positiva.
@@ -171,7 +168,7 @@ Formamos al vector ![w^{*}=w_{0}\cdot (\Sigma^{-1}\cdot \mu)+w_{1}\cdot (\Sigma^
   * ![B=\1^t\cdot \Sigma^{-1}\cdot \1](https://render.githubusercontent.com/render/math?math=B%3D%5C1%5Et%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5C1)<br />
   * ![C=\1^t\cdot \Sigma^{-1}\cdot \mu](https://render.githubusercontent.com/render/math?math=C%3D%5C1%5Et%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5Cmu)
 
-#### 3.2.1 Diagrama de flujo del solver basado en multiplicadores de Lagrage
+#### 2.2.1 Diagrama de flujo del solver basado en multiplicadores de Lagrage
 
 La implementación de este método se dividió en una serie de etapas:
 
@@ -183,7 +180,7 @@ El proceso comentado, se resumen a continuación:
 
 ![Diagrama de flujo](./images/diagrama_flujo.png)
 
-### 3.3 Solver basado en el método de Newton con restricciones de igualdad
+### 2.3 Solver basado en el método de Newton con restricciones de igualdad<a name="id5"></a>
 
 Es relevante destacar que en la teoría de optimización, es posible aproximar las soluciones de un problema de optimización sujeto a restricciones lineales, si se cumplen ciertos supuestos:
 
@@ -225,7 +222,7 @@ Con todos los elementos anteriores, nos encontramos en condiciones de describir 
   * 4. *Actualizar:* ![x+t \Delta {x_n}_t](https://render.githubusercontent.com/render/math?math=x%2Bt%20%5CDelta%20%7Bx_n%7D_t)
 
 
-#### 3.3.1 Diagrama de flujo del solver basado en el método de Newton con restricciones de igualdad
+#### 2.3.1 Diagrama de flujo del solver basado en el método de Newton con restricciones de igualdad
 
 La implementación de este método se dividió en una serie de etapas:
 
@@ -237,7 +234,7 @@ El proceso comentado, se resumen a continuación:
 
 ![Diagrama de flujo](./images/diagrama_flujo2.png)
 
-## Organización del equipo
+## 3. Organización del equipo<a name="id6"></a>
 
 Para el desarrollo del proyecto, los integrantes se dividieron principalmente en dos grupos; el **Grupo de programación** encargado de la implementación de los métodos y algoritmos; y el **Grupo de revisión** encargado de probar y reportar los métodos del primer grupo. Ambos grupos fueron coordinados por el **Project Manager** con ayuda de un **Asistente**.
 
@@ -265,7 +262,7 @@ La división anterior se puede resumir mediante la siguiente tabla:
 | 5    | Grupo de revisión/ Contexto Teórico        | Yalidt       |
 | 6    | Project Manager                            | Danahi       |
 
-## Flujo de trabajo en Github
+## 4. Flujo de trabajo en Github<a name="id7"></a>
 
 Para facilitar el desarrollo de forma colaborativa entre los equipos de programación y revisión, se siguió un *Github flow*, que consistió, en líneas generales, en la creación de ramas para resolver un issue específico, para solicitar la revisión del PM a través de un *Pull request*, y su posterior aprobación para unir los cambios hacia la rama *master*.
 
@@ -275,16 +272,33 @@ Para facilitar el desarrollo de forma colaborativa entre los equipos de programa
 
 Cabe destacar que una vez solucionado el issue correspondiente, se borró la rama asociada para facilitar el entendimiento y administración del proyecto.
 
-## Requerimientos de infraestructura
+## 5. Requerimientos de infraestructura<a name="id8"></a>
 A efecto de que el los equipos de programación y revisión tuvieran un entorno común de trabajo para el desarrollo del proyecto, se empleó Google Colab. Para las pruebas en AWS, se usó una instancia con las siguientes características:
 
 [WIP: especificar]
 
-## Organización del proyecto
+## 6. Organización del proyecto<a name="id9"></a>
 
 La organización del proyecto se realizó a través una serie de carpetas, entre las cuales destacan:
 
-* [WIP: especificar]
+* [notebooks](https://github.com/czammar/MNO_finalproject/tree/master/notebooks)
+
+Esta carpeta se subdivide en dos, Programación y Revisión donde se realizan las implementaciones en python para los solvers de multiplicador de Lagrange y método de Newton así como la revisión de este código.
+
+  * [Programación](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Programacion)
+  
+  En esta carpeta se encuentran notebooks por separado que forman parte de los diagramas de flujo 2.2.1 y 2.3.1 así como una     carpeta [solver](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Programacion/solver) donde se encuentran   los archivos .py que implementan los solvers de multiplicador de lagrange y método de Newton.
+  
+  * [Revisión](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Revision)
+  
+* [infraestructure](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure)
+
+Carpeta que contiene el dockerfile y donde se explican los pasos a seguir para levantar una instancia en AWS en donde se pueden ejecutar los códigos desarrollados para la implementación del modelo Markowitz en paralelo.
+
+* [results](https://github.com/czammar/MNO_finalproject/tree/master/results)
+
+Carpeta donde se desarrolla el reporte ejecutivo de resultados.
+
 
 En complemento, se presenta una versión esquemática de la organización de repositorio del proyecto:
 
@@ -329,7 +343,7 @@ En complemento, se presenta una versión esquemática de la organización de rep
 
 
 
-## Referencias
+## Referencias<a name="id10"></a>
 
 * Bodie, Z., Kane, A., & Marcus, A. J. (2011). Investments. New York: McGraw-Hill/Irwin.
 https://www.niceideas.ch/airxcell_doc/doc/userGuide/portfolio_optimTheory.html
