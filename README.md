@@ -6,7 +6,9 @@
 + [Consideraciones metodológicas](#id2)
   + [Portafolio de activos y sus rendimiento](#id3)
   + [Solver basado en multiplicadores de Lagrange](#id4)
+    + [Diagrama de flujo del solver basado en multiplicadores de Lagrange](#id11)
   + [Solver basado en método de Newton](#id5)
+    + [Diagrama de flujo del solver basado en el método de Newton con restricciones de igualdad](#id12)
 + [Organización del equipo](#id6)
 + [Flujo de trabajo en Github](#id7)
 + [Requerimientos de infraestructura](#id8)
@@ -168,7 +170,7 @@ Formamos al vector ![w^{*}=w_{0}\cdot (\Sigma^{-1}\cdot \mu)+w_{1}\cdot (\Sigma^
   * ![B=\1^t\cdot \Sigma^{-1}\cdot \1](https://render.githubusercontent.com/render/math?math=B%3D%5C1%5Et%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5C1)<br />
   * ![C=\1^t\cdot \Sigma^{-1}\cdot \mu](https://render.githubusercontent.com/render/math?math=C%3D%5C1%5Et%5Ccdot%20%5CSigma%5E%7B-1%7D%5Ccdot%20%5Cmu)
 
-#### 2.2.1 Diagrama de flujo del solver basado en multiplicadores de Lagrage
+#### 2.2.1 Diagrama de flujo del solver basado en multiplicadores de Lagrange<a name="id11"></a>
 
 La implementación de este método se dividió en una serie de etapas:
 
@@ -222,7 +224,7 @@ Con todos los elementos anteriores, nos encontramos en condiciones de describir 
   * 4. *Actualizar:* ![x+t \Delta {x_n}_t](https://render.githubusercontent.com/render/math?math=x%2Bt%20%5CDelta%20%7Bx_n%7D_t)
 
 
-#### 2.3.1 Diagrama de flujo del solver basado en el método de Newton con restricciones de igualdad
+#### 2.3.1 Diagrama de flujo del solver basado en el método de Newton con restricciones de igualdad<a name="id12"></a>
 
 La implementación de este método se dividió en una serie de etapas:
 
