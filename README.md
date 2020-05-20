@@ -282,7 +282,9 @@ A efecto de que los equipos de programación y revisión tuvieran un entorno com
 
 + 4 vCPUs
 
-Para poder utilizar CuPy en la instancia de AWS, se construyó una imagen con el [Dockerfile](https://github.com/czammar/MNO_finalproject/blob/master/infrastructure/Dockerfile). En esta imagen se instala CuPy, los paquetes necesarios para la ejecución de la [implementación](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure/codigos) del modelo de Markowitz, así como otros requerimientos de software (jupyter, awscli, entre otros).
+Para poder utilizar CuPy en la instancia de AWS, se construyó una imagen de Docker con el [Dockerfile](https://github.com/czammar/MNO_finalproject/blob/master/infrastructure/Dockerfile) correspondiente. En esta imagen se instala CuPy, los paquetes necesarios para la ejecución de la [implementación](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure/codigos) del modelo de Markowitz, así como otros requerimientos de software (jupyter, awscli, entre otros). Finalmente se levanta un contenedor a partir de esta imagen, e ingresando a jupyterlab se obtiene el entorno para poder ejecutar los códigos desarrollados.
+
+Los pasos a seguir para levantar la instancia de AWS, construir la imagen de Docker y levantar el contenedor, además de los detalles de configuración se encuentra en la carpeta de [infrastructure](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure)
 
 ## 6. Organización del proyecto<a name="id9"></a>
 
@@ -292,7 +294,7 @@ La organización del proyecto se realizó a través una serie de carpetas, entre
 
 Esta carpeta se subdivide en dos, [Programación](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Programacion) donde se realizan las implementaciones en python para los solvers de multiplicador de Lagrange y método de Newton, se encuentran notebooks por separado que forman parte de los diagramas de flujo 2.2.1 y 2.3.1 así como una carpeta [solver](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Programacion/solver) donde se encuentran   los archivos .py que implementan los solvers. Por otra parate la carpeta  [Revisión](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Revision) contiene notebooks separados de la revisión de código de la carpeta anterior.
   
-* [infraestructure](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure)
+* [infrastructure](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure)
 
 Carpeta que contiene el dockerfile y donde se explican los pasos a seguir para levantar una instancia en AWS en donde se pueden ejecutar los códigos desarrollados para la implementación del modelo Markowitz en paralelo.
 
