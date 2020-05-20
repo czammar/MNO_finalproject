@@ -285,11 +285,9 @@ La organización del proyecto se realizó a través una serie de carpetas, entre
 
 Esta carpeta se subdivide en dos, Programación y Revisión donde se realizan las implementaciones en python para los solvers de multiplicador de Lagrange y método de Newton así como la revisión de este código.
 
-  * [Programación](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Programacion)
-  
-  En esta carpeta se encuentran notebooks por separado que forman parte de los diagramas de flujo 2.2.1 y 2.3.1 así como una     carpeta [solver](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Programacion/solver) donde se encuentran   los archivos .py que implementan los solvers de multiplicador de lagrange y método de Newton.
-  
-  * [Revisión](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Revision)
+    * [Programación](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Programacion) En esta carpeta se encuentran notebooks por separado que forman parte de los diagramas de flujo 2.2.1 y 2.3.1 así como una     carpeta [solver](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Programacion/solver) donde se encuentran   los archivos .py que implementan los solvers de multiplicador de lagrange y método de Newton.
+    
+     * [Revisión](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Revision)
   
 * [infraestructure](https://github.com/czammar/MNO_finalproject/tree/master/infrastructure)
 
