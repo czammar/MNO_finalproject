@@ -19,34 +19,34 @@
 
 ## 1. Descripción del problema<a name="id1"></a>
 
-En el contexto de finanzas, un problema relevante es definir estrategias que permitan a los inversionista diversificar sus inversiones con el objetivo de minimizar el riesgo de su capital. Típicamente, esto corresponde con que un inversionista tiene interés en un conjunto definido de activos, denominado *portafolio*, sobre el que debe tomar una decisión sobre como adquirir o vender acciones con la idea obtener un determinado rendimiento ![r > 0](https://render.githubusercontent.com/render/math?math=r%20%3E%200).
+En el contexto de finanzas, un problema relevante es definir estrategias que permitan a los inversionistas diversificar sus inversiones con el objetivo de minimizar el riesgo de su capital. Típicamente, esto corresponde con que un inversionista tiene interés en un conjunto definido de activos, denominado *portafolio*, sobre el que debe tomar una decisión sobre cómo adquirir o vender acciones con la idea obtener un determinado rendimiento ![r > 0](https://render.githubusercontent.com/render/math?math=r%20%3E%200).
 Sin embargo, es deseable que la elección considere reducir el riesgo inherente al mercado de inversiones, los que se traduce en obtener el portafolio de *mínima varianza*, que en otras palabras significa obtener el portafolio de menor riesgo para inversionistas aversos al riesgo, donde se espera obtener las ponderaciones o proporciones que el inversionista debe invertir en las acciones evaluadas en un vector de todo el conjunto de acciones.
 
-En términos matemáticos y considerando la consabida teoría financiera, lo anterior equivale a una formulación denominada *Modelo de Markowitz*, propuesta por el economista Harry Markowitz, a través de la cual se trata de minimizar la norma inducida por la matriz de covarianza ![\Sigma](https://render.githubusercontent.com/render/math?math=%5CSigma) de los activos con referencia a los propociones de como se debe elegir las acciones que integranun portafolio específico (pesos), sujeto a que se obtenga un rendimiento acorde a la expectativa del inversionista. A estas proporciones las denotaremos **![w_i](https://render.githubusercontent.com/render/math?math=w_i)**, que finalmente es un vector de tamaño ![n \times 1](https://render.githubusercontent.com/render/math?math=n%20%5Ctimes%201), donde ![n \times 1](https://render.githubusercontent.com/render/math?math=n%20%5Ctimes%201) es el número de acciones a analizar.
+En términos matemáticos y considerando la consabida teoría financiera, lo anterior equivale a una formulación denominada *Modelo de Markowitz*, propuesta por el economista Harry Markowitz, a través de la cual se trata de minimizar la norma inducida por la matriz de covarianza ![\Sigma](https://render.githubusercontent.com/render/math?math=%5CSigma) de los activos con referencia a los proporciones de cómo se deben elegir las acciones que integran un portafolio específico (pesos), sujeto a que se obtenga un rendimiento acorde a la expectativa del inversionista. A estas proporciones las denotaremos **![w_i](https://render.githubusercontent.com/render/math?math=w_i)**, que finalmente es un vector de tamaño ![n \times 1](https://render.githubusercontent.com/render/math?math=n%20%5Ctimes%201), donde ![n \times 1](https://render.githubusercontent.com/render/math?math=n%20%5Ctimes%201) es el número de acciones a analizar.
 
 Ello constituye  un **problema de optimización sujeto a restricciones (lineales) de igualdad**, que se puede expresar en los términos siguientes:
 
 ![\min_{w} \frac{1}{2}w^T\Sigma w](https://render.githubusercontent.com/render/math?math=%5Cmin_%7Bw%7D%20%5Cfrac%7B1%7D%7B2%7Dw%5ET%5CSigma%20w)
 
 Sujeto a las restricciones lineales:
-- El inversionista el rendimiento que vislumbra: <img src="https://render.githubusercontent.com/render/math?math=w^T\mu=r">
+- El rendimiento que vislumbra el inversionista: <img src="https://render.githubusercontent.com/render/math?math=w^T\mu=r">
 - Los pesos de los activos se encuentran distribuidos congruentemente sobre el portafolio; <img src="https://render.githubusercontent.com/render/math?math=w^T1_{n}=1">
 
 
-Resolver este problema nos permite encontrar como se integra el portafolio que dado un rendimiento ![r > 0](https://render.githubusercontent.com/render/math?math=r%20%3E%200) esperado el inversionista, tenga varianza **mínima varianza** , el cual corresponde con el perfil de los inversionistas que son aversos al riesgo.  Es decir, nos permite conocer los pesos de un portafolio que, de acuerdo a una frontera de posibilidades de alocación y un rendimiento esperado, se localiza en frontera superior de entre todos los portafolios de inversión según su varianza, tal como se aprecia en la curva de la imagen:
+Resolver este problema nos permite encontrar cómo se integra el portafolio que dado un rendimiento ![r > 0](https://render.githubusercontent.com/render/math?math=r%20%3E%200) esperado del inversionista, tenga varianza **mínima varianza**, el cual corresponde con el perfil de los inversionistas que son aversos al riesgo.  Es decir, nos permite conocer los pesos de un portafolio que, de acuerdo a una frontera de posibilidades de alocación y un rendimiento esperado, se localiza en la frontera superior entre todos los portafolios de inversión según su varianza, tal como se aprecia en la curva de la imagen:
 
 ![alt-text](https://github.com/czammar/MNO_finalproject/blob/master/images/frontera_eficiente.png)
 
-Es así que  propósito de este proyecto será desarrollar estrategias que permitan resolver el modelo de Markowitz empleando herramientas de optimización y cómputo distribuido, particularmente aprovechando la disponibilidad de tarjetas GPU, así como el framework Cupy de Python para este tipo de  hardware. En adición, en este proyecto se busca echar mano de herramientas de computo en la nube y ambientes de virtualización, concretamente AWS y Docker.
+Es así que el propósito de este proyecto será desarrollar estrategias que permitan resolver el modelo de Markowitz empleando herramientas de optimización y cómputo distribuido, particularmente aprovechando la disponibilidad de tarjetas GPU, así como el framework CuPy de Python para este tipo de  hardware. En adición, en este proyecto se busca echar mano de herramientas de computo en la nube y ambientes de virtualización, concretamente AWS y Docker.
 
-A continuación se describen la estructura del presente repositorio, así como los algoritmos planteados para dar solución al modelo en cuestión.
+A continuación se describe la estructura del presente repositorio, así como los algoritmos planteados para dar solución al modelo en cuestión.
 
 
 ## 2. Consideraciones metodológicas<a name="id2"></a>
 
 ### 2.1 Portafolio de activos, sus rendimientos y pesos<a name="id3"></a>
 
-* Tras analizar las fuentes de datos disponibles, se estimó pertinente considerar precios históricos de las 50 empresas, que destacan en sus correspondientes industria,  seleccionándose las que tienen mayor participación en el mercado (al momento de realizar este proyecto). En concreto, se consideraron  las empresas:
+* Tras analizar las fuentes de datos disponibles, se estimó pertinente considerar precios históricos de las 50 empresas, que destacan en sus correspondientes industrias,  seleccionándose las que tienen mayor participación en el mercado (al momento de realizar este proyecto). En concreto, se consideraron  las empresas:
 
 |Código Bursátil| Nombre de la empresa                           | Industria               |
 | --------- | ------------------------------------------------| ----------------------- |
@@ -111,17 +111,16 @@ A continuación se describen la estructura del presente repositorio, así como l
 
 Ello para evitar problemas numéricos debidos a la escala de los rendimientos.
 
-* En lo tocante a como se debe determinar el vector de pesos asociado al portafolio de activos![$W$](https://render.githubusercontent.com/render/math?math=%24W%24), se consideró relevante pensarlos como una proporción, lo que equivale a que la suma de la entradas sea igual a 1.
+* En lo tocante a cómo se debe determinar el vector de pesos asociado al portafolio de activos![$W$](https://render.githubusercontent.com/render/math?math=%24W%24), se consideró relevante pensarlos como una proporción, lo que equivale a que la suma de la entradas sea igual a 1.
 
 * Por otro lado, el rendimiento esperado del portafolio se obtiene haciendo el producto punto del vector de rendimientos medios de los activos en el periodo en cuestión y los pesos del portafolio elegido, cumpliendo los portafolios factibles la restricción ![r=w^t \mu](https://render.githubusercontent.com/render/math?math=r%3Dw%5Et%20%5Cmu). Nota: estos pesos pueden ser negativos porque asumimos que pueden existir ventas en corto (*short sale*), lo cual implica que los inversores podrían tener una ganancia si tienen algún contrato de préstamo de títulos accionarios, los cuales deben devolver a una fecha futura y podrían devolverlos a un precio menor.
 
-* Finalmente, la matriz de varianzas y covarianzas de los portafolios se calcula como las correspondientes matrices de varianzas y covarianzas rendimientos de las acciones en el periodo de los últimos 5 años para hacer el análisis (1 de enero de 2015 al 30 de abril de 2020).
+* Finalmente, la matriz de varianzas y covarianzas de los portafolios se calcula como las correspondientes matrices de varianzas y covarianzas de rendimientos de las acciones en el periodo de los últimos 5 años para hacer el análisis (1 de enero de 2015 al 30 de abril de 2020).
 
 
 ### 2.2 Solver basado en multiplicadores de Lagrange<a name="id4"></a>
 
-En este caso, el problema de minimización se aborda calculando la solución analítica del problema de optimización recién descrito, empleando la expresión del Lagrangiano del
-problema de optimización considerando las respectivas restricciones, aprovechando que la matriz de covarianzas es simétrica y definida positiva.
+En este caso, el problema de minimización se aborda calculando la solución analítica del problema de optimización recién descrito, empleando la expresión del Lagrangiano del problema de optimización considerando las respectivas restricciones, aprovechando que la matriz de covarianzas es simétrica y definida positiva.
 
 **Solución:** Aplicar el método de multiplicadores de Lagrange al problema de optimización convexa (minimización) sujeto a restricciones lineales del Modelo de Markowitz:
 
@@ -147,7 +146,7 @@ problema de optimización considerando las respectivas restricciones, aprovechan
   * ![r = w^T 1_{n} = \lambda_{1}(\mu^T\Sigma^{-1} \mu ) + \lambda_{2}(\mu^T\Sigma^{-1}1_{n})](https://render.githubusercontent.com/render/math?math=r%20%3D%20w%5ET%201_%7Bn%7D%20%3D%20%5Clambda_%7B1%7D(%5Cmu%5ET%5CSigma%5E%7B-1%7D%20%5Cmu%20)%20%2B%20%5Clambda_%7B2%7D(%5Cmu%5ET%5CSigma%5E%7B-1%7D1_%7Bn%7D))
   * ![1 = w^T 1_{n} = \lambda_{1}(\mu^T\Sigma^{-1}1_{n}) + \lambda_{2}(1^T_{n}\Sigma^{-1}1_{n})](https://render.githubusercontent.com/render/math?math=1%20%3D%20w%5ET%201_%7Bn%7D%20%3D%20%5Clambda_%7B1%7D(%5Cmu%5ET%5CSigma%5E%7B-1%7D1_%7Bn%7D)%20%2B%20%5Clambda_%7B2%7D(1%5ET_%7Bn%7D%5CSigma%5E%7B-1%7D1_%7Bn%7D))
 
-Es sencillo ver que las ecuaciones previas pueden ser resueltas de manera analítica el resolver el sistema lineal:
+Es sencillo ver que las ecuaciones previas pueden ser resueltas de manera analítica al resolver el sistema lineal:
 
 ![Matriz](./images/matriz.png)
 
@@ -157,7 +156,7 @@ En donde:
 * ![b =\mu\Sigma_{-1}1_{n}](https://render.githubusercontent.com/render/math?math=b%20%3D%5Cmu%5CSigma_%7B-1%7D1_%7Bn%7D)
 * ![c = 1^T_{n}\Sigma^{-1}1_{n}](https://render.githubusercontent.com/render/math?math=c%20%3D%201%5ET_%7Bn%7D%5CSigma%5E%7B-1%7D1_%7Bn%7D)
 
-De lo anterior y tras un poco de álgebra, se puede pRobrar que la solución del sistema de Markowitz se puede encontrar como sigue:
+De lo anterior y tras un poco de álgebra, se puede probrar que la solución del sistema de Markowitz se puede encontrar como sigue:
 
 Formamos al vector ![w^{*}=w_{0}\cdot (\Sigma^{-1}\cdot \mu)+w_{1}\cdot (\Sigma^{-1}\cdot 1)](https://render.githubusercontent.com/render/math?math=w%5E%7B*%7D%3Dw_%7B0%7D%5Ccdot%20(%5CSigma%5E%7B-1%7D%5Ccdot%20%5Cmu)%2Bw_%7B1%7D%5Ccdot%20(%5CSigma%5E%7B-1%7D%5Ccdot%201))<br />
   * Donde los vectores involucrados tienen las siguientes expresiones:<br />
@@ -175,10 +174,10 @@ Formamos al vector ![w^{*}=w_{0}\cdot (\Sigma^{-1}\cdot \mu)+w_{1}\cdot (\Sigma^
 La implementación de este método se dividió en una serie de etapas:
 
 * **Etapa I:** se refiere a la obtención de los datos de portafolios a analizar, junto con su limpieza y transformación para posteriores análisis,
-* **Etapa II:** corresponde a la estimación de tres elementos base del modelo, a saber el retorno esperado de los activos, el valor medio esperado de los mismo junto con la matriz de covarianzas asociada.
+* **Etapa II:** corresponde a la estimación de tres elementos base del modelo, a saber el retorno esperado de los activos, el valor medio esperado de los mismos junto con la matriz de covarianzas asociada.
 * **Etapa III:** relativa a la aproximación de la composición de los pesos que permite integrar el portafolio de inversión que posee **mínima varianza**, el cual es para aquellos inversionistas que son aversos al riesgo.
 
-El proceso comentado, se resumen a continuación:
+El proceso comentado, se resume a continuación:
 
 ![Diagrama de flujo](./images/diagrama_flujo.png)
 
@@ -275,7 +274,7 @@ Para facilitar el desarrollo de forma colaborativa entre los equipos de programa
 Cabe destacar que una vez solucionado el issue correspondiente, se borró la rama asociada para facilitar el entendimiento y administración del proyecto.
 
 ## 5. Requerimientos de infraestructura<a name="id8"></a>
-A efecto de que los equipos de programación y revisión tuvieran un entorno común de trabajo para el desarrollo del proyecto, se empleó Google Colab. Una vez desarrollados los códigos, se ejecutaron los mismos en una instancia de AWS. Se eligió la máquina **Deep Learning AMI (Ubuntu 18.04) Version 28.1**, pues tiene una tarjeta gráfica NVIDIA. Las características de la instancia fueron:
+A efecto de que los equipos de programación y revisión tuvieran un entorno común de trabajo para el desarrollo del proyecto, se empleó Google Colab. Una vez desarrollados los códigos, se ejecutaron los mismos en una instancia de AWS. Para ello se eligió la máquina **Deep Learning AMI (Ubuntu 18.04) Version 28.1**, pues tiene una tarjeta gráfica NVIDIA. Las características de la instancia fueron:
 
 + Familia GPU
 
