@@ -121,7 +121,7 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
         gfeval = gradient_approximation(f,x)
 
     if Hf_symbolic:
-        Hfeval = Hf_symbolic(x,Sigma)
+        Hfeval = Hf_symbolic(Sigma)
     else:
         Hfeval = Hessian_approximation(f,x)
     
@@ -183,7 +183,7 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
             gfeval = gradient_approximation(f,x)
         
         if Hf_symbolic: 
-            Hfeval = Hf_symbolic(x,Sigma)
+            Hfeval = Hf_symbolic(Sigma)
         else:
             Hfeval = Hessian_approximation(f,x)
         if(A.ndim == 1):
