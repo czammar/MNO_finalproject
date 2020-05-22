@@ -148,7 +148,7 @@ En este caso, el problema de minimización se aborda calculando la solución ana
 
 Es sencillo ver que las ecuaciones previas pueden ser resueltas de manera analítica al resolver el sistema lineal:
 
-![Matriz](./images/matriz.png)
+![Matriz](./images/sistema2.png)
 
 En donde:
 
