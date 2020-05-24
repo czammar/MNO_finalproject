@@ -9,6 +9,7 @@
     + [Diagrama de flujo del solver basado en multiplicadores de Lagrange](#id11)
   + [Solver basado en método de Newton](#id5)
     + [Diagrama de flujo del solver basado en el método de Newton con restricciones de igualdad](#id12)
+  + ![Reporte de resultados](https://github.com/czammar/MNO_finalproject/blob/master/results/ReporteResultados_v3.pdf)
 + [Organización del equipo](#id6)
 + [Flujo de trabajo en Github](#id7)
 + [Requerimientos de infraestructura](#id8)
